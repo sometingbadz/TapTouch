@@ -1,0 +1,200 @@
+<html>
+
+
+<head>
+    <link rel = "stylesheet" href="../navBar.css">
+    <link rel = "stylesheet" href="../header.css">
+    <link rel = "stylesheet" href = "headerImage.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        @media only screen and (max-width:890px){
+            #navBar{
+                visibility: hidden;
+            }
+            body{
+                min-width: 0;
+            }
+        }
+        @media only screen and (min-width:890px){
+            #navBarPhone{
+                visibility: hidden;
+            }
+            
+           
+        }
+       
+    </style>
+</head>
+
+<body>
+    <!-- MobilePhone navBar-->
+    <div id = "navBarPhone"> 
+        <div id ="nBarPhonecontent">
+        </div>
+        <label for="check" class="bar">
+            <input id="check" type="checkbox">
+            <span class="top"></span>
+            <span class="middle"></span>
+            <span class="bottom"></span>
+        </label>
+
+    </div>
+
+    <!-- Desktop navBar-->
+
+    <div id = "navBar">
+        <div id = "logo"> 
+            <!-- <img src="logo.png" style="height: inherit;">   -->
+            <p>TapTouch</p>
+        </div>
+        <div id ="menu">
+            <ul>
+                <li> <a href="#"> Home</a> </li> 
+                <li > 
+                    <a href="#" id = "product"> Products</a> 
+                    <div id="submenuArea"></div> 
+
+                     <div id="submenu" > 
+                        <div id = "triangle"></div> 
+                        <div class = "item "> 
+                            
+                            <div class ="subitem1">
+                                
+                            </div>
+                            <div class ="subitem2">
+                                <p>Pos<br> Systems </p>
+                            </div>
+                        </div>
+                        <div class = "item">   
+                            <div class ="subitem1">
+                                
+                            </div>
+                            <div class ="subitem2">
+                                <p>Wifi <br>Printers </p>
+
+                            </div>
+                        </div>
+                        <div class = "item"> 
+                            <div class ="subitem1">
+                                
+                            </div>
+                            <div class ="subitem2">
+                                <p>Thermal <br> devices </p>
+
+                            </div>
+                        </div>
+                        <div class = "item"> 
+                            <div class ="subitem1"> 
+                            </div>
+                            <div class ="subitem2">
+                                <p>Wifi <br>Device </p>
+
+                            </div>
+                        </div>
+
+                     </div>
+                </li>
+                <li> <a href="#"> Contact Us</a>  </li>
+            </ul>
+           
+        </div>
+        <div id = "logo" style="visibility: hidden; height: inherit;"> </div>
+    </div>
+
+
+
+    <div class ="headerImage">
+        <div id ="headerBox">
+            <div class ="content">
+                <div class ="content_Info">
+                  <span class ="animationCircle"></span></span>
+                    <button class="icon-btn add-btn">
+                        <div class="add-icon"></div>
+                        <div class="btn-txt">Photo</div>
+                    </button>
+                </div>
+                <div class ="content_Info" style ="top: 5%; left :17%">
+                    <span class ="animationCircle"></span></span>
+                      <button class="icon-btn add-btn">
+                          <div class="add-icon"></div>
+                          <div class="btn-txt">Photo</div>
+                      </button>
+                  </div>
+                  <div class ="content_Info" style ="top: 15%; left :80%">
+                    <span class ="animationCircle"></span></span>
+                      <button class="icon-btn add-btn">
+                          <div class="add-icon"></div>
+                          <div class="btn-txt">Photo</div>
+                      </button>
+                  </div>
+                  <div class ="content_Info" style ="top: 35%; left :68%">
+                    <span class ="animationCircle"></span></span>
+                      <button class="icon-btn add-btn">
+                          <div class="add-icon"></div>
+                          <div class="btn-txt">Photo</div>
+                      </button>
+                  </div>
+                 
+
+            </div>
+        </div>
+        <img id = "headerImage" src="header.png" alt="bannerProduct">
+
+    </div>
+
+
+
+
+
+
+    <div style="width : 100vw;height:9999px; background-color: grey;"></div>
+    
+    
+    <script src="../navBar.js"></script>
+
+    <script>
+
+        let headerImage = document.getElementById("headerImage");
+        let headereBox = document.getElementById("headerBox");
+        resizeHeaderImage(headerImage);
+        header_animationCircleDelayCreation();
+        addEventListener('resize', (event) => {
+            resizeHeaderImage(headerImage);
+        });
+
+
+
+        function resizeHeaderImage(m){
+            let c1 = document.getElementsByClassName("content_Info");
+            var ratio = m.naturalWidth/m.naturalHeight;
+            var width = m.height*ratio;
+            var height = m.height;
+            if (width > m.width) {
+                width = m.width;
+                height = m.width/ratio;
+                
+            }
+            headerBox.style.width = width +"px";
+            headerBox.style.height = height + "px";
+            for(let i =0; i < c1.length ; i++) {
+                c1[i].style.width = width/29;
+                c1[i].style.height = width/29;
+            }
+        }
+        function header_animationCircleDelayCreation(){
+           let mm =  document.getElementsByClassName("animationCircle");
+           for(let i =0; i < mm.length;i++)
+              mm[i].style.animationDelay = 2*i+"s";
+
+        }
+
+    </script>
+
+
+</body>
+
+
+
+</html>
