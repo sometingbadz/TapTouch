@@ -147,5 +147,6 @@ instance.optIn("400539987300920", "ProhibitedSources", true);
 config.set("400539987300920", "unwantedData", {"blacklisted_keys":{},"sensitive_keys":{}});
 fbq.loadPlugin("unwanteddata");
 instance.optIn("400539987300920", "UnwantedData", true);
+config.set("400539987300920", "IABPCMAEBridge", {"enableAutoEventId":false});
 fbq.loadPlugin("iabpcmaebridge");
 instance.optIn("400539987300920", "IABPCMAEBridge", true);instance.configLoaded("400539987300920"); }});

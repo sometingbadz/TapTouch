@@ -1,0 +1,536 @@
+<html>
+
+
+
+<head>
+
+    <script>
+        let organise = () => {
+            let largest = 0;
+            let items = document.getElementsByClassName("moreInfo");
+            for (let i =0; i < items.length;i++){
+                let cr = items[i];
+                if (cr.clientHeight > largest) largest = cr.clientHeight;
+            }
+            let spacer = document.getElementsByClassName("spacer");
+            for (let i =0; i < spacer.length;i++){
+                let cr = spacer[i];
+                cr.style.height = `${largest+25}px`;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {organise()});
+        window.addEventListener('resize', (event) => {  organise();});
+
+
+    </script>
+ 
+    <style>
+    
+        .packageContainer{
+            width: 100%;
+            
+            padding: 2%;
+            box-sizing: border-box;
+        }
+
+        .Packages{
+            background-color: white;
+            width: 100%;
+            box-sizing: border-box;
+            display: grid;
+            grid-template-columns: repeat(3, 32%);
+            gap :0.5%;
+        }
+
+       
+        .package{
+            border: 0.1px solid grey;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+            
+            width : 100%;
+            padding-top: 2%;
+            box-sizing: border-box;
+        }
+
+        .mainDescriptionContainer{
+            width: 100%;
+            margin-bottom: 15px;
+
+        }
+        .mainDescriptionContainer h3{
+            font-weight: 300;
+        }
+        .mainDescriptionContainer span{
+            font-size: 30px;
+        }
+
+        .spacer{
+            background-color: black;
+        }
+        .moreInfo{
+            position: absolute; bottom: 15px; width: 100%;
+        }
+
+
+        .packageInnerContainer{
+            background-color: white;
+            position: relative;
+            word-wrap: break-word;
+            word-break: break-all;
+            padding: 2%;
+            padding-left: 5%;
+            padding-right: 5%;
+            box-sizing: border-box;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            text-align: center;
+            min-height: 100%;
+        }
+        .btn-31,
+        .btn-31 *,
+        .btn-31 :after,
+        .btn-31 :before,
+        .btn-31:after,
+        .btn-31:before {
+        border: 0 solid;
+        box-sizing: border-box;
+        }
+
+        .btn-31 {
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: button;
+            background-color: #000;
+            background-image: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+                Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            font-size: 100%;
+            font-weight: 900;
+            line-height: 1.5;
+            margin: 0;
+            -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+            padding: 0;
+        }
+
+        .btn-31:disabled {
+        cursor: default;
+        }
+
+        .btn-31:-moz-focusring {
+        outline: auto;
+        }
+
+        .btn-31 svg {
+        display: block;
+        vertical-align: middle;
+        }
+
+        .btn-31 [hidden] {
+        display: none;
+        }
+
+        .btn-31 {
+        border-width: 1px;
+        padding: 1rem 2rem;
+        position: relative;
+        text-transform: uppercase;
+        }
+
+        .btn-31:before {
+        --progress: 100%;
+        background: #fff;
+        -webkit-clip-path: polygon(
+            100% 0,
+            var(--progress) var(--progress),
+            0 100%,
+            100% 100%
+        );
+        clip-path: polygon(
+            100% 0,
+            var(--progress) var(--progress),
+            0 100%,
+            100% 100%
+        );
+        content: "";
+        inset: 0;
+        position: absolute;
+        transition: -webkit-clip-path 0.2s ease;
+        transition: clip-path 0.2s ease;
+        transition: clip-path 0.2s ease, -webkit-clip-path 0.2s ease;
+        }
+
+        .btn-31:hover:before {
+        --progress: 0%;
+        }
+
+        .btn-31 .text-container {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        }
+
+        .btn-31 .text {
+        display: block;
+        font-weight: 900;
+        mix-blend-mode: difference;
+        position: relative;
+        }
+
+        .btn-31:hover .text {
+        -webkit-animation: move-up-alternate 0.3s ease forwards;
+        animation: move-up-alternate 0.3s ease forwards;
+        }
+
+        @-webkit-keyframes move-up-alternate {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(80%);
+        }
+
+        51% {
+            transform: translateY(-80%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+        }
+
+        @keyframes move-up-alternate {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(80%);
+        }
+
+        51% {
+            transform: translateY(-80%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+        }
+
+
+
+
+        .package h4{
+            padding: 0;
+            margin: 0;
+        }
+        .featuresContainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .featuresContainer span{
+            /* border-right: 1px solid black; */
+            /* border-left: 1px solid black; */
+            padding-left:3px ;
+            padding-right: 3px;
+            margin-left:2px;
+        }
+
+        .moreDetail{
+            margin-top: 15px;
+            background-color: darkgreen;
+            width: 100%;
+            border-radius: 2em;
+            box-sizing: border-box;
+            /* border: 13%;
+             */
+            color: white;
+            padding: 3%;
+        }
+
+        .packageInfo{
+            border: 1px solid black;
+            width: 100% !important;
+            border-radius: 0.5em;
+            margin-bottom: 15px;
+        }
+
+        .imageContainer{
+            width: 100%;
+            height: 200px;
+            padding: 2%;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .imageContainer img{
+            width: auto;
+            height: 100%;
+            object-fit: contain;
+        }
+    
+
+
+        .packageInfo p{
+            border-bottom: 0.3px solid black;
+            padding: 0;
+            padding-bottom: 13px;
+            margin:4px;
+        }
+        .packageInfo p:last-child {
+            border-bottom:none;
+            padding-bottom: 13px;
+            padding-top: 13px;
+
+        }
+        .packageInfo p:nth-child(2) {
+            border-bottom:none;
+            border-top: 0.3px solid black;
+            border-bottom: 0.3px solid black;
+            padding-top: 13px;
+            padding-bottom: 13px;
+
+        }
+
+    </style>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="http://pospal.com.au/wp-content/uploads/2019/08/favicon.ico" sizes="32x32">
+
+    <link rel "stylesheet" type="text/css" href=".PackagesStyling.css" >
+
+</head>
+
+
+<body>  
+
+    <div class = "packageContainer">
+        <div class = "Packages">
+            <!-- BUBBLE TEA -->
+            <div class = "package" style = "background-color: lightgreen;">
+                <div class = "packageInnerContainer">   
+                    <h1> Bubble Tea / Beverage Lite </h1>
+                    <!-- <div style = "border: 1px solid black; padding: 1%; box-sizing: border-box; ">
+                        <h3 style = "margin: 0;"> Perfect for </h3> 
+
+                    </div> -->
+                    <div class="imageContainer">
+                        <img src = "https://pospal.com.au/wp-content/uploads/2020/02/mainImage-1.png"/>
+                    </div>
+
+                    <div class = "mainDescriptionContainer">
+                        <h3>
+                            Main description goes here ........................
+                            <br>
+                            from <span> $00.00</span> / month
+                        </h3>
+                    </div>
+
+                    <div class = "packageInfo">
+                                <h3> Package 1 </h3>
+                                <p> T2s Dual Screen 15" + 10.1   </p>
+                                <p> Inbuilt receipt printer  </p>
+                                <p> Cashdraw  </p>
+                                <p> Setup, Training and Deployment </p>
+                                <p style = "font-weight: 600;"> $2199 inc GST </p>
+
+                    </div>
+    
+        
+                    <div class = "packageInfo">
+                            <h3> Popoular Addons </h3>
+                                <p> Self-ordering kiosk activation  </p>
+                                <p> Delivery Platform lntegration i Per Channel  </p>
+                                <p> Loyalty I Membership  </p>
+                                <p> Staff Management </p>
+                                <p> Advance Reporting </p>
+
+                    </div>
+                    <div class = "spacer">  </div>
+
+                   
+                    <div class = "moreInfo">
+                        
+                        <div class = "featuresContainer">
+                            <span> | Free Plan Feature | </span>
+                            <span>  Advance Payment  | </span>
+                            <span> Advertising | </span>
+    
+                            <span> Standard Remote Support </span>
+                        </div>
+                      
+                        <button class="btn-31">
+                            <span class="text-container">
+                              <span class="text">More Info</span>
+                            </span>
+                        </button> 
+                    </div>
+                      
+                </div>        
+            </div>
+           
+
+
+
+
+
+
+            <!-- Hardware package -->
+            <div class = "package" style = "background-color: lightblue;">
+                <div class = "packageInnerContainer">   
+                    <h1> Hardware Packages </h1>
+                    <!-- <div style = "border: 1px solid black; padding: 1%; box-sizing: border-box; ">
+                        <h3 style = "margin: 0;"> Perfect for </h3> 
+
+                    </div> -->
+                    <div class="imageContainer">
+                        <img src = "https://pospal.com.au/wp-content/uploads/2020/02/mainImage-1.png"/>
+                    </div>
+
+                    <div class = "mainDescriptionContainer">
+                        <h3>
+                            Perfect for : Takeaway restaurant, small cafes
+                            <br>
+                            from <span> $00.00</span> / month
+                        </h3>
+                    </div>
+
+                    <div class = "packageInfo">
+                                <h3> Package 2 </h3>
+                                <p> T2s Dual Screen Lite 15" + 10.1   </p>
+                                <p> Receipt Printer  </p>
+                                <p> Cashdraw  </p>
+                                <p> Setup, Training and Deployment </p>
+                                <p style = "font-weight: 600;"> $1999 inc GST </p>
+
+                    </div>
+    
+        
+                    <div class = "packageInfo">
+                            <h3> Popoular Addons </h3>
+                                <p> Self-ordering kiosk activation  </p>
+                                <p> Delivery Platform lntegration / Per Channel  </p>
+                                <p> QR ordering  </p>
+                    </div>
+                
+                    <div class = "spacer" > 
+
+
+                    </div>
+
+                    
+                    <div class = "moreInfo">
+                        
+                        <div class = "featuresContainer">
+                            <span> | Free Plan Feature | </span>
+                            <span>  Advance Payment  | </span>
+                            <span> Advertising | </span>
+    
+                            <span> Standard Remote Support | </span>
+                        </div>
+                      
+                        <button class="btn-31">
+                            <span class="text-container">
+                              <span class="text">More Info</span>
+                            </span>
+                        </button> 
+                    </div>
+               
+                </div>        
+            </div>
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <!-- Hospitality Plus -->
+            <div class = "package" style = "background-color: lightcoral;">
+                <div class = "packageInnerContainer">   
+                    <h1> Hospitality Plus </h1>
+                    <div class="imageContainer">
+                        <img src = "https://pospal.com.au/wp-content/uploads/2020/02/mainImage-1.png"/>
+                    </div>
+
+                    <div class = "mainDescriptionContainer">
+                        <h3>
+                            Perfect for : Growing Hospitality business
+                            <br>
+                            from <span> $00.00</span> / month
+                        </h3>
+                    </div>
+
+                    <div class = "packageInfo">
+                                <h3> Package 2 </h3>
+                                <p> T2s Dual Screen Lite 15" + 10.1   </p>
+                                <p> Receipt Printer  </p>
+                                <p> Cashdraw  </p>
+                                <p> Setup, Training and Deployment </p>
+                                <p> Free Wireless Router if additional wireless printer, kDS or selfordering kiosk purchased</p>
+                                <p style = "font-weight: 600;"> $1999 inc GST </p>
+
+                    </div>
+    
+                    <!--         
+                        <div class = "packageInfo">
+                                <h3> Popoular Addons </h3>
+                                    
+                        </div>
+                    -->
+                     <div class = "spacer" >  </div> 
+                     <div class = "moreInfo">
+                        
+                        <div class = "featuresContainer">
+                            <span> | All Lite Features | </span>
+                            <span>  Advance Front of House  | </span>
+                            <span> Multi Device | </span>
+                            <span> Standard Remote Support </span>
+                            <span> Management | </span>
+                            <span> Advance reporting by email |</span>
+                        </div>
+                      
+                        <button class="btn-31">
+                            <span class="text-container">
+                              <span class="text">More Info</span>
+                            </span>
+                        </button> 
+                    </div>
+                       
+                </div>        
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+
+</body>
+
+</html>
