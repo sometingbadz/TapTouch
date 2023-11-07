@@ -420,7 +420,7 @@ body.custom-background { background-color: #ffffff; }
 	width: 100vw;
     background:black; /* you can change the backgorund color here. */
     font-family:Arial, Helvetica, sans-serif;
-    font-size: 21px;
+    font-size: 25px;
 	}
 	ul.nav li {
 		border-right:1px solid white; /* you can change the border color matching to your background color */
@@ -527,7 +527,7 @@ footer#footer-area table td{display:table-row;
     <!--  THEME PRELOADER AREA-->
 
     
-	    <!--  navigation Bar -->
+	    <!--  navigation Bar <END>-->
 	
 	
 	

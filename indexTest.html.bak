@@ -67,6 +67,10 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+
+
+
+
 </style>
 	<link rel="stylesheet" id="dashicons-css" href="./index_files/dashicons.min.css" type="text/css" media="all">
 <link rel="stylesheet" id="admin-bar-css" href="./index_files/admin-bar.min.css" type="text/css" media="all">
@@ -400,15 +404,7 @@ src="https://www.facebook.com/tr?id=400539987300920&ev=PageView&noscript=1" />
 <style type="text/css" id="custom-background-css">
 body.custom-background { background-color: #ffffff; }
 </style>
-	<style type="text/css" media="print">#wpadminbar { display:none; }</style>
-	<style type="text/css" media="screen">
-	html { margin-top: 32px !important; }
-	* html body { margin-top: 32px !important; }
-	@media screen and ( max-width: 782px ) {
-		html { margin-top: 46px !important; }
-		* html body { margin-top: 46px !important; }
-	}
-</style>
+
 <!-- HEADER CSSs -->
 
 <style>
@@ -416,11 +412,11 @@ body.custom-background { background-color: #ffffff; }
     margin:0;
     padding:0;
     list-style:none;
-    height:50px; line-height:50px;
+    height:36px; line-height:36px;
 	width: 100vw;
     background:black; /* you can change the backgorund color here. */
     font-family:Arial, Helvetica, sans-serif;
-    font-size: 21px;
+    font-size:13px;
 	}
 	ul.nav li {
 		border-right:1px solid white; /* you can change the border color matching to your background color */
@@ -437,6 +433,8 @@ body.custom-background { background-color: #ffffff; }
 	ul.nav li.current a {
 		background: #a9a9a9;
 	}
+</style>
+	
 </style>
 	<meta name="generator" content="Powered by Slider Revolution 6.2.3 - responsive, Mobile-Friendly Slider Plugin for WordPress with comfortable drag and drop interface.">
 <link rel="icon" href="http://pospal.com.au/wp-content/uploads/2019/08/favicon.ico" sizes="32x32">
@@ -521,30 +519,28 @@ footer#footer-area table td{display:table-row;
 }
 .kc-container{max-width:100%;}</style><style type="text/css" id="kc-css-render"></style><script type="text/javascript" charset="UTF-8" src="./index_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./index_files/util.js.download"></script></head>
 
+
 <body class="page-template page-template-elementor_theme page page-id-16582 logged-in admin-bar custom-background theme-appai kc-css-system woocommerce-js woolentor_current_theme_appai elementor-default elementor-kit-15424 elementor-page elementor-page-16582 customize-support e--ua-blink e--ua-edge e--ua-webkit" data-elementor-device-mode="desktop">
 
     
-    <!--  THEME PRELOADER AREA-->
+    <!--  NAVIGATION BAR BEGINNING -->
 
-    
-	    <!--  navigation Bar -->
+	    <!--  navigation Bar <END>-->
 	
 	
 	
         <header class="global-header custom">
 		  <nav class="nav" data-spy="affix" data-offset-top="1">
 				<ul class="nav">				
-				<li><a href="https://taptouchpos.com.au/">Home</a></li>
-				<li><a href="https://taptouchpos.com.au/products">Product</a></li>
-				
 				<li><a href="https://taptouchpos.com.au/contact">Contact Us</a></li>
 				
+				<li><a href="https://taptouchpos.com.au/products">Product</a></li>
+				<li><a href="https://taptouchpos.com.au/">Home</a></li>
+				<li></li>
 
 				</ul>
 		</nav>
 </header>
-
-
     <!-- THEME PRELOADER AREA END -->
     <!-- MAIN WRAPPER START -->
     <div id="page-top" class="wrapper">
@@ -724,6 +720,7 @@ footer#footer-area table td{display:table-row;
 								<div class="elementor-image">
 													<a href="http://taptouchpos.com.au/tea">
 							<img src="./index_files/teastore.png" title="" alt="" class="elementor-animation-bounce-in">								</a>
+														</div>
 														</div>
 						</div>
 				</div>
@@ -1684,12 +1681,15 @@ var elementorAdminBarConfig = {"elementor_edit_page":{"id":"elementor_edit_page"
 </script>
 <script type="text/javascript" src="./index_files/elementor-admin-bar.min.js.download"></script>
 <script type="text/javascript" src="./index_files/hoverintent-js.min.js.download"></script>
-		
+<script type="text/javascript" src="./index_files/admin-bar.min.js.download"></script>
+	
 			<!--[if lte IE 8]>
 		<script type="text/javascript">
 			document.body.className = document.body.className.replace( /(^|\s)(no-)?customize-support(?=\s|$)/, '' ) + ' no-customize-support';
 		</script>
 	<![endif]-->
+	
+
 	<!--[if gte IE 9]><!-->
 		<script type="text/javascript">
 			(function() {
@@ -1703,6 +1703,7 @@ var elementorAdminBarConfig = {"elementor_edit_page":{"id":"elementor_edit_page"
 			}());
 		</script>
 	<!--<![endif]-->
+		
 		
 
 
