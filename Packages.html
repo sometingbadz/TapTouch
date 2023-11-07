@@ -1,5 +1,6 @@
 <html>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 <head>
@@ -34,6 +35,7 @@
             let largest = 0;
             let items = document.getElementsByClassName("moreInfo");
 
+          console.log("Aligning content");
 
             for (let i =0; i < items.length;i++){
                 let cr = items[i];
@@ -51,8 +53,7 @@
         document.addEventListener('DOMContentLoaded', (event) => {alignBottomContent()});
         window.addEventListener('resize', (event) => {  
             alignBottomContent();
-            if (window.innerWidth > 850)expandPackage(-1);
-
+            expandPackage(-1);
         });
 
 
@@ -60,19 +61,20 @@
 
 
     <style>
-        @media only screen and (max-width: 850px) {
+        @media only screen and (max-width: 1000px) {
             #Packages {
                 background-color: lightblue;
                 grid-template-columns:100%;
 
             }
         }
-        @media only screen and (min-width: 850px) {
+        @media only screen and (min-width: 1000px) {
             #Packages {
                 background-color: lightblue;
                 grid-template-columns:100%;
+                
                 grid-template-columns: 1fr 1fr 1fr; /* Adjust column widths as needed */
-            }
+              }
         }
     </style>
 
@@ -84,10 +86,9 @@
     
         .packageContainer{
             width: 100%;
-            
+            overflow: hidden;
             padding: 2%;
             box-sizing: border-box;
-            border: 1px solid black;
         }
 
         .MainDescriptionTopContainer{
@@ -114,7 +115,6 @@
         .package{
             border: 0.1px solid grey;
             box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-            
             width : 100%;
             padding-top: 2%;
             box-sizing: border-box;
@@ -139,11 +139,7 @@
         .moreInfo{
             position: absolute; bottom: 15px; width: 100%;
         }
-        .ExpandedContent div{
-            /* padding: 2%; */
-            /* box-sizing: border-box; */
-            /* overflow: hidden; */
-        }
+    
         .ExpandedContent{
             display: none;
             /* padding: 2%; */
@@ -155,7 +151,6 @@
             background-color: white;
             /* border: 1px solid black; */
             /* transition: all 1s; */
-            text-align: left;
         }
 
 
@@ -388,6 +383,15 @@
 
         }
 
+        .mainPoint{
+            background-color: black;
+            color: white;
+            font-weight: 700;
+            padding: 1%;
+            box-sizing: border-box;
+            text-decoration: underline;
+        }
+
     </style>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -397,6 +401,7 @@
     <link rel "stylesheet" type="text/css" href=".PackagesStyling.css" >
 
     <script>
+        let mobileWidth = 1000;
         let expandPackage = (packageNumber) => { 
             console.log("Expand package " + packageNumber);
             let packageContainer = document.getElementById("Packages");
@@ -418,29 +423,29 @@
 
             for (let i =0; i < expandedContent.length; i++){              
                 if (packageNumber == 0 ){
-                    if (pageWidth > 850)
+                    if (pageWidth > mobileWidth)
                     {
                         expandedContent[i].style.height = "auto";
+                        expandedContent[i].style.minHeight = "7000px";
                         expandedContent[i].style.width = "100%";
-                        expandedContent[i].style.overflow = "visible";
 
                     }else{
                         expandedContent[i].style.height = "0px";
                         expandedContent[i].style.width = "0px";
-                    
+                        expandedContent[i].style.minHeight = "0px";
                         window.open("https://docs.google.com/spreadsheets/d/e/2PACX-1vQYE_PgCazGAfUTlNpx3svt7148DmGffcnWJIUh9diZqCDSem5JZ9034XYNQMGyXx0_Fa_89wS_x-33/pubhtml?gid=0&single=true", '_blank');
                     }
                 }else if (packageNumber === -1){
-                    expandedContent[i].style.height = "0px";
+                        expandedContent[i].style.height = "0px";
                         expandedContent[i].style.width = "0px";
-                    // expandedContent[i].style.maxHeight = "0px";
-                    // expandedContent[i].style.width = "0px";
+                        expandedContent[i].style.minHeight = "0px";
                     
                 } 
             }
-            if (pageWidth > 850){
+            if (pageWidth > mobileWidth){
 
                 window.scrollTo({top: 1100, behavior: 'smooth'});
+
             }
         }
         document.addEventListener("transitionend", () => { alignBottomContent()});
@@ -451,7 +456,12 @@
 
 
 <body>  
+    
 
+
+
+
+  
     <div class = "packageContainer">
         <!-- <div style = "background-color: red; width: 100%; height: 100vh;">
 
@@ -498,31 +508,20 @@
                                 <p> Loyalty I Membership  </p>
                                 <p> Staff Management </p>
                                 <p> Advance Reporting </p>
-
                     </div>
 
-
-
-
-
-
-                    <div class = "spacer">  </div>
+                    
+    
+                    <div class = "spacer"> </div>
                    
                     <div class = "moreInfo">
-                        
                         <div class = "featuresContainer">
                             <span> | Free Plan Feature | </span>
                             <span>  Advance Payment  | </span>
                             <span> Advertising | </span>
-    
                             <span> Standard Remote Support </span>
                         </div>
-                        <!-- <button class="btn-31" onclick="expandPackage(1)">
-                            <span class="text-container">
-                              <span class="text" >More Info</span>
-                            </span>
-                        </button>  -->
-                    </div>
+                    </div> 
                       
                 </div>        
             </div>
@@ -579,7 +578,6 @@
                             <span> | Free Plan Feature | </span>
                             <span>  Advance Payment  | </span>
                             <span> Advertising | </span>
-    
                             <span> Standard Remote Support | </span>
                         </div>
                       
@@ -745,128 +743,128 @@
                             <col class="col1">
                             <tbody>
                               <tr class="row0">
-                                <td class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Multi Channel Ordering</span></td>
-                                <td class="column1">&nbsp;</td>
+                                <td  class = "mainPoint"  class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Multi Channel Ordering</span></td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row1">
                                 <td class="column0 style0 s">Drag &amp; drop OneMenu</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row2">
                                 <td class="column0 style0 s">Dine in/Take Away/Delivery ordering w delivery surcharge auto calculation</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row3">
                                 <td class="column0 style0 s">Manual delivery platform orders</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row4">
                                 <td class="column0 style0 s">Build in online ordering</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row5">
                                 <td class="column0 style0 s">Build in QR-code ordering 2.0 (2% online payment)</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row6">
-                                <td class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Payment &amp; Print</span>  </td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Payment &amp; Print</span>  </td>
+                                <td  class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row7">
                                 <td class="column0 style0 s">Manual Discount</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row8">
                                 <td class="column0 style0 s">1 Receipt &amp; 1 kitchen printer</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row9">
                                 <td class="column0 style0 s">Cash, EFTPOS &amp; Multi card</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row10">
                                 <td class="column0 style0 s">Stripe Online Payment</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row11">
                                 <td class="column0 style0 s">Alipay &amp; Wechat Integrated</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row12">
-                                <td class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Management </span></td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Management </span></td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row13">
                                 <td class="column0 style0 s">Order Management</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row14">
                                 <td class="column0 style0 s">Table Management Lite</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row15">
                                 <td class="column0 style0 s">Customer profile Lite</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row16">
                                 <td class="column0 style0 s">End-of-day report</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row17">
                                 <td class="column0 style0 s">Mobile report in pocket</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row18">
                                 <td class="column0 style0 s">Invoice list on cloud</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row19">
                                 <td class="column0 style0 s">Remote setting</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row20">
-                                <td class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Support </span></td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Support </span></td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row21">
                                 <td class="column0 style0 s">Online knowledge base</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row22">
                                 <td class="column0 style0 s">Online training videos</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row23">
                                 <td class="column0 style0 s">Lifecycle free SW upgrade &amp; bug fix</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row24">
-                                <td class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Optional Free Payment * (For Wholesale)</span> </td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Optional Free Payment * (For Wholesale)</span> </td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row25">
                                 <td class="column0 style0 s">Integrated payment w Taptouch Payment</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row26">
                                 <td class="column0 style0 s">Service Surcharge</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row27">
                                 <td class="column0 style0 s">Split Payment</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row28">
                                 <td class="column0 style0 s">Only for Taptouch Payment</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row29">
                                 <td class="column0 style0 s">Available to order advanced models</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row30">
-                                <td class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Enhanced POS</span> </td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Enhanced POS</span> </td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row31">
                                 <td class="column0 style0 s">Combo, Setmenu &amp; Multi Course</td>
@@ -874,15 +872,15 @@
                               </tr>
                               <tr class="row32">
                                 <td class="column0 style0 s">No limited Multi printers</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class="column1"></td>
                               </tr>
                               <tr class="row33">
                                 <td class="column0 style0 s">Reroute to backup printer</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class="column1"></td>
                               </tr>
                               <tr class="row34">
-                                <td class="column0 style0 s"><span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Advertising</span></td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s"><span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Advertising</span></td>
+                                <td class = "mainPoint"  class="column1"></td>
                               </tr>
                               <tr class="row35">
                                 <td class="column0 style0 s">In-store ads on client screen</td>
@@ -890,51 +888,51 @@
                               </tr>
                               <tr class="row36">
                                 <td class="column0 style0 s">Receipt customization ads</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class="column1"></td>
                               </tr>
                               <tr class="row37">
                                 <td class="column0 style0 s">Ads on E-Menu</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class="column1"></td>
                               </tr>
                               <tr class="row38">
                                 <td class="column0 style0 s">Email receipt</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class="column1"></td>
                               </tr>
                               <tr class="row39">
-                                <td class="column0 style0 s">Easy report</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Easy report</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row40">
                                 <td class="column0 style0 s">Sales by Category report</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row41">
                                 <td class="column0 style0 s">Sales by product report</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row42">
-                                <td class="column0 style0 s">Standard remote support</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Standard remote support</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row43">
                                 <td class="column0 style0 s">By chat &amp; call back in working hours</td>
-                                <td class="column1 style0 s">TRUE</td>
+                                <td class="column1 style0 s">✔</td>
                               </tr>
                               <tr class="row44">
-                                <td class="column0 style0 s">Advance Front of House</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Advance Front of House</td>
+                                <td  class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row45">
                                 <td class="column0 style0 s">Advance table layout</td>
-                                <td class="column1 style0 s">row 58</td>
+                                <td class="column1 style0 s"></td>
                               </tr>
                               <tr class="row46">
                                 <td class="column0 style0 s">All-in-1 Multi-menu</td>
-                                <td class="column1 style0 s">row 36</td>
+                                <td class="column1 style0 s"></td>
                               </tr>
                               <tr class="row47">
-                                <td class="column0 style0 s">Management</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row48">
                                 <td class="column0 style0 s">Multi-staff access w multi-language</td>
@@ -942,19 +940,19 @@
                               </tr>
                               <tr class="row49">
                                 <td class="column0 style0 s">Log of staff abnormal action</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class="column1"></td>
                               </tr>
                               <tr class="row50">
-                                <td class="column0 style0 s">Multi Device</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Multi Device</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row51">
                                 <td class="column0 style0 s">Additional 2 POS devices (inc. POS, Kiosk Tablet, KDS &amp; Pickup board)</td>
                                 <td class="column1 style0 s">$30/device</td>
                               </tr>
                               <tr class="row52">
-                                <td class="column0 style0 s">Advanced Table Management</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Advanced Table Management</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row53">
                                 <td class="column0 style0 s">- Floor plan with seats info<br />
@@ -965,8 +963,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row54">
-                                <td class="column0 style0 s">Kitchen Display</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Kitchen Display</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row55">
                                 <td class="column0 style0 s">- 15.6 or 21.5&quot; KDS to combine dishes <br />
@@ -977,24 +975,24 @@
                                 <td class="column1 style0 s">$30/device</td>
                               </tr>
                               <tr class="row56">
-                                <td class="column0 style0 s">Pick up board</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Pick up board</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row57">
                                 <td class="column0 style0 s">- Information for customers to pick food @ counter</td>
                                 <td class="column1 style0 s">$30/device</td>
                               </tr>
                               <tr class="row58">
-                                <td class="column0 style0 s">Lotteries</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Lotteries</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row59">
                                 <td class="column0 style0 s">- Seamless working with Australia Lotteries System</td>
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row60">
-                                <td class="column0 style0 s">Delivery Platform direct Integration</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Delivery Platform direct Integration</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row61">
                                 <td class="column0 style0 s">- Ubereats, Hungry Panda, Doordash direct to System. <br />
@@ -1006,8 +1004,8 @@
                     Integrates Ubereats, get HungryPanda for free</td>
                               </tr>
                               <tr class="row62">
-                                <td class="column0 style0 s">5s quick call order</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">5s quick call order</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row63">
                                 <td class="column0 style0 s">- Phone caller ID to POS directly<br />
@@ -1016,8 +1014,8 @@
                                 <td class="column1 style0 s">$30/line</td>
                               </tr>
                               <tr class="row64">
-                                <td class="column0 style0 s">Tablet order @ table</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Tablet order @ table</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row65">
                                 <td class="column0 style0 s">- 8&quot; or 10&quot; tablet to order @ table <br />
@@ -1025,8 +1023,8 @@
                                 <td class="column1 style0 s">$30/device</td>
                               </tr>
                               <tr class="row66">
-                                <td class="column0 style0 s">QR Restaurant 3.5</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">QR Restaurant 3.5</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row67">
                                 <td class="column0 style0 s">- Shared shopping cart<br />
@@ -1038,8 +1036,8 @@
                                 <td class="column1 style0 s">$30/table +2% online payment</td>
                               </tr>
                               <tr class="row68">
-                                <td class="column0 style0 s">Self-ordering Kiosk mode</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Self-ordering Kiosk mode</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row69">
                                 <td class="column0 style0 s">- POS can work as a Kiosk<br />
@@ -1049,19 +1047,19 @@
                                 <td class="column1 style0 s">$30/device+$30/software</td>
                               </tr>
                               <tr class="row70">
-                                <td class="column0 style0 s">Advance Discount</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Advance Discount</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row71">
                                 <td class="column0 style0 s">- Customized discount for cost &amp; performance tracking<br />
                     - Automatic discount for sales policy<br />
-                    &nbsp;&nbsp;1. Buy 1 get 1 free or half price for 2nd<br />
-                    &nbsp;&nbsp;2. 10% discount if total order is over $100</td>
+                    1. Buy 1 get 1 free or half price for 2nd<br />
+                    2. 10% discount if total order is over $100</td>
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row72">
-                                <td class="column0 style0 s">Trackable coupon</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Trackable coupon</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row73">
                                 <td class="column0 style0 s">- Publish coupon (can copy to use)<br />
@@ -1070,8 +1068,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row74">
-                                <td class="column0 style0 s">Flexi Voucher</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Flexi Voucher</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row75">
                                 <td class="column0 style0 s">- Offline voucher sales.<br />
@@ -1080,8 +1078,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row76">
-                                <td class="column0 style0 s">Digital Gift Card</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Digital Gift Card</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row77">
                                 <td class="column0 style0 s">- Brand in the back office easily and define multi amout<br />
@@ -1090,8 +1088,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row78">
-                                <td class="column0 style0 s">Loyalty card w reward point</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Loyalty card w reward point</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row79">
                                 <td class="column0 style0 s">- Define card and reward policy in backoffice<br />
@@ -1100,8 +1098,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row80">
-                                <td class="column0 style0 s">Digital Punch card</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Digital Punch card</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row81">
                                 <td class="column0 style0 s">- Set punch card policy in the back office.<br />
@@ -1110,8 +1108,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row82">
-                                <td class="column0 style0 s">Member Credit*</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Member Credit*</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row83">
                                 <td class="column0 style0 s">- Setup popular top up amount on backend with discount strategy.<br />
@@ -1121,8 +1119,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row84">
-                                <td class="column0 style0 s">Multi Menu</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Multi Menu</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row85">
                                 <td class="column0 style0 s">- Time-based menu for holidays, weekends, happy hour<br />
@@ -1132,8 +1130,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row86">
-                                <td class="column0 style0 s">Stock tracing</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Stock tracing</td>
+                                <td  class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row87">
                                 <td class="column0 style0 s">- Stock tracking<br />
@@ -1142,8 +1140,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row88">
-                                <td class="column0 style0 s">Ingredient table</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Ingredient table</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row89">
                                 <td class="column0 style0 s">- Ingredient table<br />
@@ -1151,8 +1149,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row90">
-                                <td class="column0 style0 s">Inventory &amp; Vendor Management</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Inventory &amp; Vendor Management</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row91">
                                 <td class="column0 style0 s">- Stock in/out &amp; Stock taking<br />
@@ -1160,8 +1158,8 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row92">
-                                <td class="column0 style0 s">Advance report &amp; BI analysys</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Advance report &amp; BI analysys</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row93">
                                 <td class="column0 style0 s">- Cloud storage for data over 3 months<br />
@@ -1173,16 +1171,16 @@
                                 <td class="column1 style0 s">$30/month</td>
                               </tr>
                               <tr class="row94">
-                                <td class="column0 style0 s">Survillance Integration</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Survillance Integration</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row95">
                                 <td class="column0 style0 s">All ordering process and shopping cart log to NVR</td>
                                 <td class="column1 style0 s">$30/POS</td>
                               </tr>
                               <tr class="row96">
-                                <td class="column0 style0 s">Staff performance</td>
-                                <td class="column1">&nbsp;</td>
+                                <td class = "mainPoint" class="column0 style0 s">Staff performance</td>
+                                <td class = "mainPoint" class="column1"></td>
                               </tr>
                               <tr class="row97">
                                 <td class="column0 style0 s">- Clock in/out and attendance report (by PIN or NFC card)<br />
@@ -1269,128 +1267,128 @@
                                     <col class="col1">
                                     <tbody>
                                     <tr class="row0">
-                                        <td class="column0 style0 s">Multi Channel Ordering</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Multi Channel Ordering</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row1">
                                         <td class="column0 style0 s">Drag &amp; drop OneMenu</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row2">
                                         <td class="column0 style0 s">Dine in/Take Away/Delivery ordering w delivery surcharge auto calculation</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row3">
                                         <td class="column0 style0 s">Manual delivery platform orders</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row4">
                                         <td class="column0 style0 s">Build in online ordering</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row5">
                                         <td class="column0 style0 s">Build in QR-code ordering 2.0 (2% online payment)</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row6">
-                                        <td class="column0 style0 s">Payment &amp; Print</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Payment &amp; Print</td>
+                                        <td  class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row7">
                                         <td class="column0 style0 s">Manual Discount</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row8">
                                         <td class="column0 style0 s">1 Receipt &amp; 1 kitchen printer</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row9">
                                         <td class="column0 style0 s">Cash, EFTPOS &amp; Multi card</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row10">
                                         <td class="column0 style0 s">Stripe Online Payment</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row11">
                                         <td class="column0 style0 s">Alipay &amp; Wechat Integrated</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row12">
-                                        <td class="column0 style0 s">Management</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row13">
                                         <td class="column0 style0 s">Order Management</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row14">
                                         <td class="column0 style0 s">Table Management Lite</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row15">
                                         <td class="column0 style0 s">Customer profile Lite</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row16">
                                         <td class="column0 style0 s">End-of-day report</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row17">
                                         <td class="column0 style0 s">Mobile report in pocket</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row18">
                                         <td class="column0 style0 s">Invoice list on cloud</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row19">
                                         <td class="column0 style0 s">Remote setting</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row20">
-                                        <td class="column0 style0 s">Support</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Support</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row21">
                                         <td class="column0 style0 s">Online knowledge base</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row22">
                                         <td class="column0 style0 s">Online training videos</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row23">
                                         <td class="column0 style0 s">Lifecycle free SW upgrade &amp; bug fix</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row24">
-                                        <td class="column0 style0 s">Optional Free Payment * (For Wholesale)</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Optional Free Payment * (For Wholesale)</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row25">
                                         <td class="column0 style0 s">Integrated payment w Taptouch Payment</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row26">
                                         <td class="column0 style0 s">Service Surcharge</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row27">
                                         <td class="column0 style0 s">Split Payment</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row28">
                                         <td class="column0 style0 s">Only for Taptouch Payment</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row29">
                                         <td class="column0 style0 s">Available to order advanced models</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row30">
-                                        <td class="column0 style0 s">Enhanced POS</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Enhanced POS</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row31">
                                         <td class="column0 style0 s">Combo, Setmenu &amp; Multi Course</td>
@@ -1398,15 +1396,15 @@
                                     </tr>
                                     <tr class="row32">
                                         <td class="column0 style0 s">No limited Multi printers</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row33">
                                         <td class="column0 style0 s">Reroute to backup printer</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row34">
-                                        <td class="column0 style0 s">Advertising</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Advertising</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row35">
                                         <td class="column0 style0 s">In-store ads on client screen</td>
@@ -1414,51 +1412,51 @@
                                     </tr>
                                     <tr class="row36">
                                         <td class="column0 style0 s">Receipt customization ads</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row37">
                                         <td class="column0 style0 s">Ads on E-Menu</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row38">
                                         <td class="column0 style0 s">Email receipt</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row39">
-                                        <td class="column0 style0 s">Easy report</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Easy report</td>
+                                        <td  class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row40">
                                         <td class="column0 style0 s">Sales by Category report</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row41">
                                         <td class="column0 style0 s">Sales by product report</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row42">
-                                        <td class="column0 style0 s">Standard remote support</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td  class = "mainPoint" class="column0 style0 s">Standard remote support</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row43">
                                         <td class="column0 style0 s">By chat &amp; call back in working hours</td>
-                                        <td class="column1 style0 s">TRUE</td>
+                                        <td class="column1 style0 s">✔</td>
                                     </tr>
                                     <tr class="row44">
-                                        <td class="column0 style0 s">Advance Front of House</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Advance Front of House</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row45">
                                         <td class="column0 style0 s">Advance table layout</td>
-                                        <td class="column1 style0 s">row 58</td>
+                                        <td class="column1 style0 s"></td>
                                     </tr>
                                     <tr class="row46">
                                         <td class="column0 style0 s">All-in-1 Multi-menu</td>
-                                        <td class="column1 style0 s">row 36</td>
+                                        <td class="column1 style0 s"></td>
                                     </tr>
                                     <tr class="row47">
-                                        <td class="column0 style0 s">Management</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                        <td class = "mainPoint"  class="column1"></td>
                                     </tr>
                                     <tr class="row48">
                                         <td class="column0 style0 s">Multi-staff access w multi-language</td>
@@ -1466,19 +1464,19 @@
                                     </tr>
                                     <tr class="row49">
                                         <td class="column0 style0 s">Log of staff abnormal action</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row50">
-                                        <td class="column0 style0 s">Multi Device</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Multi Device</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row51">
                                         <td class="column0 style0 s">Additional 2 POS devices (inc. POS, Kiosk Tablet, KDS &amp; Pickup board)</td>
                                         <td class="column1 style0 s">$30/device</td>
                                     </tr>
                                     <tr class="row52">
-                                        <td class="column0 style0 s">Advanced Table Management</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Advanced Table Management</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row53">
                                         <td class="column0 style0 s">- Floor plan with seats info<br />
@@ -1489,8 +1487,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row54">
-                                        <td class="column0 style0 s">Kitchen Display</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Kitchen Display</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row55">
                                         <td class="column0 style0 s">- 15.6 or 21.5&quot; KDS to combine dishes <br />
@@ -1501,24 +1499,24 @@
                                         <td class="column1 style0 s">$30/device</td>
                                     </tr>
                                     <tr class="row56">
-                                        <td class="column0 style0 s">Pick up board</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Pick up board</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row57">
                                         <td class="column0 style0 s">- Information for customers to pick food @ counter</td>
                                         <td class="column1 style0 s">$30/device</td>
                                     </tr>
                                     <tr class="row58">
-                                        <td class="column0 style0 s">Lotteries</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Lotteries</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row59">
                                         <td class="column0 style0 s">- Seamless working with Australia Lotteries System</td>
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row60">
-                                        <td class="column0 style0 s">Delivery Platform direct Integration</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Delivery Platform direct Integration</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row61">
                                         <td class="column0 style0 s">- Ubereats, Hungry Panda, Doordash direct to System. <br />
@@ -1530,8 +1528,8 @@
                             Integrates Ubereats, get HungryPanda for free</td>
                                     </tr>
                                     <tr class="row62">
-                                        <td class="column0 style0 s">5s quick call order</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">5s quick call order</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row63">
                                         <td class="column0 style0 s">- Phone caller ID to POS directly<br />
@@ -1540,8 +1538,8 @@
                                         <td class="column1 style0 s">$30/line</td>
                                     </tr>
                                     <tr class="row64">
-                                        <td class="column0 style0 s">Tablet order @ table</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint"class="column0 style0 s">Tablet order @ table</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row65">
                                         <td class="column0 style0 s">- 8&quot; or 10&quot; tablet to order @ table <br />
@@ -1549,8 +1547,8 @@
                                         <td class="column1 style0 s">$30/device</td>
                                     </tr>
                                     <tr class="row66">
-                                        <td class="column0 style0 s">QR Restaurant 3.5</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">QR Restaurant 3.5</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row67">
                                         <td class="column0 style0 s">- Shared shopping cart<br />
@@ -1562,8 +1560,8 @@
                                         <td class="column1 style0 s">$30/table +2% online payment</td>
                                     </tr>
                                     <tr class="row68">
-                                        <td class="column0 style0 s">Self-ordering Kiosk mode</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Self-ordering Kiosk mode</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row69">
                                         <td class="column0 style0 s">- POS can work as a Kiosk<br />
@@ -1573,19 +1571,19 @@
                                         <td class="column1 style0 s">$30/device+$30/software</td>
                                     </tr>
                                     <tr class="row70">
-                                        <td class="column0 style0 s">Advance Discount</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Advance Discount</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row71">
                                         <td class="column0 style0 s">- Customized discount for cost &amp; performance tracking<br />
                             - Automatic discount for sales policy<br />
-                            &nbsp;&nbsp;1. Buy 1 get 1 free or half price for 2nd<br />
-                            &nbsp;&nbsp;2. 10% discount if total order is over $100</td>
+                            1. Buy 1 get 1 free or half price for 2nd<br />
+                            2. 10% discount if total order is over $100</td>
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row72">
-                                        <td class="column0 style0 s">Trackable coupon</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Trackable coupon</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row73">
                                         <td class="column0 style0 s">- Publish coupon (can copy to use)<br />
@@ -1594,8 +1592,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row74">
-                                        <td class="column0 style0 s">Flexi Voucher</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Flexi Voucher</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row75">
                                         <td class="column0 style0 s">- Offline voucher sales.<br />
@@ -1604,8 +1602,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row76">
-                                        <td class="column0 style0 s">Digital Gift Card</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Digital Gift Card</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row77">
                                         <td class="column0 style0 s">- Brand in the back office easily and define multi amout<br />
@@ -1614,8 +1612,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row78">
-                                        <td class="column0 style0 s">Loyalty card w reward point</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Loyalty card w reward point</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row79">
                                         <td class="column0 style0 s">- Define card and reward policy in backoffice<br />
@@ -1624,8 +1622,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row80">
-                                        <td class="column0 style0 s">Digital Punch card</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Digital Punch card</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row81">
                                         <td class="column0 style0 s">- Set punch card policy in the back office.<br />
@@ -1634,8 +1632,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row82">
-                                        <td class="column0 style0 s">Member Credit*</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Member Credit*</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row83">
                                         <td class="column0 style0 s">- Setup popular top up amount on backend with discount strategy.<br />
@@ -1645,8 +1643,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row84">
-                                        <td class="column0 style0 s">Multi Menu</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Multi Menu</td>
+                                        <td class = "mainPoint"  class="column1"></td>
                                     </tr>
                                     <tr class="row85">
                                         <td class="column0 style0 s">- Time-based menu for holidays, weekends, happy hour<br />
@@ -1656,8 +1654,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row86">
-                                        <td class="column0 style0 s">Stock tracing</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Stock tracing</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row87">
                                         <td class="column0 style0 s">- Stock tracking<br />
@@ -1666,8 +1664,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row88">
-                                        <td class="column0 style0 s">Ingredient table</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Ingredient table</td>
+                                        <td  class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row89">
                                         <td class="column0 style0 s">- Ingredient table<br />
@@ -1675,8 +1673,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row90">
-                                        <td class="column0 style0 s">Inventory &amp; Vendor Management</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Inventory &amp; Vendor Management</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row91">
                                         <td class="column0 style0 s">- Stock in/out &amp; Stock taking<br />
@@ -1684,8 +1682,8 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row92">
-                                        <td class="column0 style0 s">Advance report &amp; BI analysys</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Advance report &amp; BI analysys</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row93">
                                         <td class="column0 style0 s">- Cloud storage for data over 3 months<br />
@@ -1697,16 +1695,16 @@
                                         <td class="column1 style0 s">$30/month</td>
                                     </tr>
                                     <tr class="row94">
-                                        <td class="column0 style0 s">Survillance Integration</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Survillance Integration</td>
+                                        <td class = "mainPoint" class="column1"></td>
                                     </tr>
                                     <tr class="row95">
                                         <td class="column0 style0 s">All ordering process and shopping cart log to NVR</td>
                                         <td class="column1 style0 s">$30/POS</td>
                                     </tr>
                                     <tr class="row96">
-                                        <td class="column0 style0 s">Staff performance</td>
-                                        <td class="column1">&nbsp;</td>
+                                        <td class = "mainPoint" class="column0 style0 s">Staff performance</td>
+                                        <td class="column1"></td>
                                     </tr>
                                     <tr class="row97">
                                         <td class="column0 style0 s">- Clock in/out and attendance report (by PIN or NFC card)<br />
@@ -1790,216 +1788,216 @@
                                 <tbody>
                              
                                   <tr class="row1">
-                                    <td class="column0 style0 s">Multi Channel Ordering</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Multi Channel Ordering</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row2">
                                     <td class="column0 style0 s">Drag &amp; drop OneMenu</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row3">
                                     <td class="column0 style0 s">Dine in/Take Away/Delivery ordering w delivery surcharge auto calculation</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row4">
                                     <td class="column0 style0 s">Manual delivery platform orders</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row5">
                                     <td class="column0 style0 s">Build in online ordering</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row6">
                                     <td class="column0 style0 s">Build in QR-code ordering 2.0 (2% online payment)</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row7">
-                                    <td class="column0 style0 s">Payment &amp; Print</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Payment &amp; Print</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row8">
                                     <td class="column0 style0 s">Manual Discount</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row9">
                                     <td class="column0 style0 s">1 Receipt &amp; 1 kitchen printer</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row10">
                                     <td class="column0 style0 s">Cash, EFTPOS &amp; Multi card</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row11">
                                     <td class="column0 style0 s">Stripe Online Payment</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row12">
                                     <td class="column0 style0 s">Alipay &amp; Wechat Integrated</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row13">
-                                    <td class="column0 style0 s">Management</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row14">
-                                    <td class="column0 style0 s">Order Management</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td  class="column0 style0 s">Order Management</td>
+                                    <td  class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row15">
                                     <td class="column0 style0 s">Table Management Lite</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row16">
                                     <td class="column0 style0 s">Customer profile Lite</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row17">
                                     <td class="column0 style0 s">End-of-day report</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row18">
                                     <td class="column0 style0 s">Mobile report in pocket</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row19">
                                     <td class="column0 style0 s">Invoice list on cloud</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row20">
                                     <td class="column0 style0 s">Remote setting</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row21">
-                                    <td class="column0 style0 s">Support</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Support</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row22">
                                     <td class="column0 style0 s">Online knowledge base</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row23">
                                     <td class="column0 style0 s">Online training videos</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row24">
                                     <td class="column0 style0 s">Lifecycle free SW upgrade &amp; bug fix</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row25">
-                                    <td class="column0 style0 s">Optional Free Payment * (For Wholesale)</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Optional Free Payment * (For Wholesale)</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row26">
                                     <td class="column0 style0 s">Integrated payment w Taptouch Payment</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row27">
                                     <td class="column0 style0 s">Service Surcharge</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row28">
                                     <td class="column0 style0 s">Split Payment</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row29">
                                     <td class="column0 style0 s">Only for Taptouch Payment</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row30">
                                     <td class="column0 style0 s">Available to order advanced models</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row31">
-                                    <td class="column0 style0 s">Enhanced POS</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Enhanced POS</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row32">
                                     <td class="column0 style0 s">Combo, Setmenu &amp; Multi Course</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row33">
                                     <td class="column0 style0 s">No limited Multi printers</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row34">
                                     <td class="column0 style0 s">Reroute to backup printer</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row35">
-                                    <td class="column0 style0 s">Advertising</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Advertising</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row36">
                                     <td class="column0 style0 s">In-store ads on client screen</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row37">
                                     <td class="column0 style0 s">Receipt customization ads</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row38">
                                     <td class="column0 style0 s">Ads on E-Menu</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row39">
                                     <td class="column0 style0 s">Email receipt</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row40">
-                                    <td class="column0 style0 s">Easy report</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td  class = "mainPoint" class="column0 style0 s">Easy report</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row41">
                                     <td class="column0 style0 s">Sales by Category report</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row42">
                                     <td class="column0 style0 s">Sales by product report</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row43">
-                                    <td class="column0 style0 s">Standard remote support</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Standard remote support</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row44">
                                     <td class="column0 style0 s">By chat &amp; call back in working hours</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row45">
-                                    <td class="column0 style0 s">Advance Front of House</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Advance Front of House</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row46">
                                     <td class="column0 style0 s">Advance table layout</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row47">
                                     <td class="column0 style0 s">All-in-1 Multi-menu</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row48">
-                                    <td class="column0 style0 s">Management</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row49">
                                     <td class="column0 style0 s">Multi-staff access w multi-language</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row50">
                                     <td class="column0 style0 s">Log of staff abnormal action</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row51">
-                                    <td class="column0 style0 s">Multi Device</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Multi Device</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row52">
                                     <td class="column0 style0 s">Additional 2 POS devices (inc. POS, Kiosk Tablet, KDS &amp; Pickup board)</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row53">
-                                    <td class="column0 style0 s">Advanced Table Management</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td  class = "mainPoint" class="column0 style0 s">Advanced Table Management</td>
+                                    <td cclass = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row54">
                                     <td class="column0 style0 s">- Floor plan with seats info<br />
@@ -2007,11 +2005,11 @@
                         - Table operation move, merge, split, combine, bring back, lock &amp; move dishes<br />
                         - Order operation: Cover no., Seat No.; Quick call away; Quick message to kitchen<br />
                         - Report: Sales by table, sales by cover</td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row55">
-                                    <td class="column0 style0 s">Kitchen Display</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Kitchen Display</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row56">
                                     <td class="column0 style0 s">- 15.6 or 21.5&quot; KDS to combine dishes <br />
@@ -2022,24 +2020,24 @@
                                     <td class="column1 style0 s">$30/device</td>
                                   </tr>
                                   <tr class="row57">
-                                    <td class="column0 style0 s">Pick up board</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Pick up board</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row58">
                                     <td class="column0 style0 s">- Information for customers to pick food @ counter</td>
                                     <td class="column1 style0 s">$30/device</td>
                                   </tr>
                                   <tr class="row59">
-                                    <td class="column0 style0 s">Lotteries</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Lotteries</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row60">
                                     <td class="column0 style0 s">- Seamless working with Australia Lotteries System</td>
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row61">
-                                    <td class="column0 style0 s">Delivery Platform direct Integration</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Delivery Platform direct Integration</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row62">
                                     <td class="column0 style0 s">- Ubereats, Hungry Panda, Doordash direct to System. <br />
@@ -2051,8 +2049,8 @@
                         Integrates Ubereats, get HungryPanda for free</td>
                                   </tr>
                                   <tr class="row63">
-                                    <td class="column0 style0 s">5s quick call order</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">5s quick call order</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row64">
                                     <td class="column0 style0 s">- Phone caller ID to POS directly<br />
@@ -2061,8 +2059,8 @@
                                     <td class="column1 style0 s">$30/line</td>
                                   </tr>
                                   <tr class="row65">
-                                    <td class="column0 style0 s">Tablet order @ table</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Tablet order @ table</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row66">
                                     <td class="column0 style0 s">- 8&quot; or 10&quot; tablet to order @ table <br />
@@ -2070,8 +2068,8 @@
                                     <td class="column1 style0 s">$30/device</td>
                                   </tr>
                                   <tr class="row67">
-                                    <td class="column0 style0 s">QR Restaurant 3.5</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">QR Restaurant 3.5</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row68">
                                     <td class="column0 style0 s">- Shared shopping cart<br />
@@ -2083,8 +2081,8 @@
                                     <td class="column1 style0 s">$30/table +2% online payment</td>
                                   </tr>
                                   <tr class="row69">
-                                    <td class="column0 style0 s">Self-ordering Kiosk mode</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Self-ordering Kiosk mode</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row70">
                                     <td class="column0 style0 s">- POS can work as a Kiosk<br />
@@ -2094,19 +2092,19 @@
                                     <td class="column1 style0 s">$30/device+$30/software</td>
                                   </tr>
                                   <tr class="row71">
-                                    <td class="column0 style0 s">Advance Discount</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Advance Discount</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row72">
                                     <td class="column0 style0 s">- Customized discount for cost &amp; performance tracking<br />
                         - Automatic discount for sales policy<br />
-                        &nbsp;&nbsp;1. Buy 1 get 1 free or half price for 2nd<br />
-                        &nbsp;&nbsp;2. 10% discount if total order is over $100</td>
+                        1. Buy 1 get 1 free or half price for 2nd<br />
+                        2. 10% discount if total order is over $100</td>
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row73">
-                                    <td class="column0 style0 s">Trackable coupon</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Trackable coupon</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row74">
                                     <td class="column0 style0 s">- Publish coupon (can copy to use)<br />
@@ -2115,8 +2113,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row75">
-                                    <td class="column0 style0 s">Flexi Voucher</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Flexi Voucher</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row76">
                                     <td class="column0 style0 s">- Offline voucher sales.<br />
@@ -2125,8 +2123,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row77">
-                                    <td class="column0 style0 s">Digital Gift Card</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Digital Gift Card</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row78">
                                     <td class="column0 style0 s">- Brand in the back office easily and define multi amout<br />
@@ -2135,8 +2133,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row79">
-                                    <td class="column0 style0 s">Loyalty card w reward point</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Loyalty card w reward point</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row80">
                                     <td class="column0 style0 s">- Define card and reward policy in backoffice<br />
@@ -2145,8 +2143,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row81">
-                                    <td class="column0 style0 s">Digital Punch card</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Digital Punch card</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row82">
                                     <td class="column0 style0 s">- Set punch card policy in the back office.<br />
@@ -2155,8 +2153,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row83">
-                                    <td class="column0 style0 s">Member Credit*</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Member Credit*</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row84">
                                     <td class="column0 style0 s">- Setup popular top up amount on backend with discount strategy.<br />
@@ -2166,19 +2164,19 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row85">
-                                    <td class="column0 style0 s">Multi Menu</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Multi Menu</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row86">
                                     <td class="column0 style0 s">- Time-based menu for holidays, weekends, happy hour<br />
                         - By channel for dine in/take away/dlivery w different price<br />
                         - By location different menus for different shop<br />
                         - By device with different menu like drink menu on bar machine, table service menu for tablet </td>
-                                    <td class="column1 style0 s">TRUE</td>
+                                    <td class="column1 style0 s">✔</td>
                                   </tr>
                                   <tr class="row87">
-                                    <td class="column0 style0 s">Stock tracing</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Stock tracing</td>
+                                    <td  class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row88">
                                     <td class="column0 style0 s">- Stock tracking<br />
@@ -2187,8 +2185,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row89">
-                                    <td class="column0 style0 s">Ingredient table</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Ingredient table</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row90">
                                     <td class="column0 style0 s">- Ingredient table<br />
@@ -2196,8 +2194,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row91">
-                                    <td class="column0 style0 s">Inventory &amp; Vendor Management</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Inventory &amp; Vendor Management</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row92">
                                     <td class="column0 style0 s">- Stock in/out &amp; Stock taking<br />
@@ -2205,8 +2203,8 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row93">
-                                    <td class="column0 style0 s">Advance report &amp; BI analysys</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Advance report &amp; BI analysys</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row94">
                                     <td class="column0 style0 s">- Cloud storage for data over 3 months<br />
@@ -2218,16 +2216,16 @@
                                     <td class="column1 style0 s">$30/month</td>
                                   </tr>
                                   <tr class="row95">
-                                    <td class="column0 style0 s">Survillance Integration</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Survillance Integration</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row96">
                                     <td class="column0 style0 s">All ordering process and shopping cart log to NVR</td>
                                     <td class="column1 style0 s">$30/POS</td>
                                   </tr>
                                   <tr class="row97">
-                                    <td class="column0 style0 s">Staff performance</td>
-                                    <td class="column1">&nbsp;</td>
+                                    <td class = "mainPoint" class="column0 style0 s">Staff performance</td>
+                                    <td class = "mainPoint" class="column1"></td>
                                   </tr>
                                   <tr class="row98">
                                     <td class="column0 style0 s">- Clock in/out and attendance report (by PIN or NFC card)<br />

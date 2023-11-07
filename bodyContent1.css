@@ -1,0 +1,126 @@
+#bodyContent1{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:100vw;
+    background-color: #202020;
+    opacity: 1;
+    align-content : flex-start;
+    justify-content: center;
+    
+}
+
+
+#bcLine {
+    display: block;
+    position: absolute;
+    border: 0;
+    border-top: 1.3px solid #ccc;
+    margin-top: 150px;
+    width: 100vw;
+    opacity: 0;
+    transition:opacity 0.5s, width 1s;
+    z-index: 0;
+}
+
+.innerBodyContent{
+    display: flex;
+    position: relative;
+    background-color: red;
+    margin-top: 90px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.bc1Title{
+    /* margin: auto; */
+    position: relative;
+    margin-top: 150px;
+    width: 100vw;
+    height: 19vw;
+    display: inline-block;
+    text-align: center;
+    padding-top: 5%;
+
+
+}
+
+.bc1Title span{
+    color: rgb(255, 255, 255, 0.1);
+    font-size:9vw;
+    -webkit-box-reflect: below -63px linear-gradient(transparent, rgba(0,0,0,0.03));
+    display: inline-block;
+    text-transform: uppercase;    
+
+}
+
+
+@keyframes waviy {
+    0%{
+        color: rgb(255, 255, 255, 0.1);
+
+    }99%{
+        color: rgb(255, 255, 255, 0.1);
+    }100%{
+        color: rgb(255, 255, 255, 1);
+
+    }
+  }
+
+
+  .bc1Business
+  {
+    box-sizing: border-box;
+    padding : 2%;
+    display:grid;
+    grid-template-columns : 100%;
+    grid-template-rows : 50% 25%;
+    width:30%;
+    height: 30vw;
+    margin: 0.9%;
+    row-gap: 7%;
+    background-color: rgba(20, 20, 20, 0.7);
+    border-radius: 1em;
+    overflow: hidden;
+    -webkit-clip-path: inset(0px 0% 0px 0 );
+    transition:-webkit-clip-path 0.5s ease-in-out;
+    
+  }
+  .bc1Business:hover > div > p:nth-child(1){
+    /* font-size:clamp(13px, 2.2vw, 35px);  */
+    margin-top:2%;
+  }
+  .bc1Business:hover {
+    background-color: rgba(20, 20, 20, 1);
+  }
+
+
+  #Bs1CoverPhoto{
+    display: block;
+    background-color: rgba(0,0,0, 0.1);
+    height: 100%;
+    width: 100%;
+    margin-bottom: 100px;
+  }
+
+  .bc1Business p {
+    color:white;
+    font-size:clamp(13px, 2vw, 35px); 
+    margin: 0;
+    display: block;
+    transition:all 0.2s;
+
+  }
+
+
+  .bc1Business > div p:nth-child(2)
+  {
+    margin-top: 5%;
+    color:grey;
+    font-size: 1vw;
+    word-wrap: break-word;
+  } 
+ 
