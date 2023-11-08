@@ -2,8 +2,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
 <head>
+  <link rel = "stylesheet" href="navBar.css">
+  <link rel = "stylesheet" href="header.css">
+  <script src="navBar.js"></script>
 
     <script>
         let AlignMainDescription = () => { 
@@ -89,6 +91,7 @@
             overflow: hidden;
             padding: 2%;
             box-sizing: border-box;
+            background-color: white;
         }
 
         .MainDescriptionTopContainer{
@@ -456,7 +459,83 @@
 
 
 <body>  
+     
+    <!-- MobilePhone navBar-->
+  <div onmousedown="expandNavigation()"  id = "navBarPhonee"> 
     
+    <?xml version="1.0" ?><svg height="32" id="expand" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d=" M16 4 L28 4 L28 16 L24 12 L20 16 L16 12 L20 8z M4 16 L8 20 L12 16 L16 20 L12 24 L16 28 L4 28z "/></svg>
+
+  </div>
+
+  <div id = "expandedTab">
+          <a href="./index.html"> Home</a>
+          <a href="./Packages.html"> Packages</a>
+          <a href="./products.html" id = "product"> Products</a> 
+          <a href="./contact.html"> Contact Us</a>
+  </div>
+  
+  <!-- Desktop navBar-->
+
+  <div id = "navBar">
+    <div id = "logo"> 
+        <!-- <img src="logo.png" style="height: inherit;">   -->
+        <p>TapTouch</p>
+    </div>
+    <div id ="menu">
+        <ul class = "menuContainer">
+            <li> <a href="./index.html"> Home</a> </li> 
+    <li> <a href="./Packages.html"> Packages</a> </li> 
+            <li > 
+                <a href="./products.html" id = "product"> Products</a> 
+                <div id="submenuArea"></div> 
+
+                 <div id="submenu" > 
+                    <div id = "triangle"></div> 
+                    <div class = "item "> 
+                        
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Pos<br> Systems </p>
+                        </div>
+                    </div>
+                    <div class = "item">   
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Wifi <br>Printers </p>
+
+                        </div>
+                    </div>
+                    <div class = "item"> 
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Thermal <br> devices </p>
+
+                        </div>
+                    </div>
+                    <div class = "item"> 
+                        <div class ="subitem1"> 
+                        </div>
+                        <div class ="subitem2">
+                            <p>Wifi <br>Device </p>
+
+                        </div>
+                    </div>
+
+                 </div>
+            </li>
+            <li> <a href="./contact.html"> Contact Us</a>  </li>
+        </ul>
+       
+    </div>
+    <div id = "logo" style="visibility: hidden; height: inherit;"> </div>
+</div>
+
 
 
 

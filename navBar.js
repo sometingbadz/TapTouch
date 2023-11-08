@@ -1,4 +1,31 @@
 
+
+
+
+
+
+
+
+
+
+    let currentExpandedState = false;
+
+    let expandNavigation = () => { 
+
+        console.log("mouse clicked");
+        currentExpandedState = !currentExpandedState;
+        let expandedNavigation = document.getElementById("expandedTab");
+
+        if(currentExpandedState){
+            expandedNavigation.style.display = "flex";
+
+        }else{
+
+            expandedNavigation.style.display = "none";
+        }
+    }
+
+
     logoListener();
 
     /* Menu Animations */

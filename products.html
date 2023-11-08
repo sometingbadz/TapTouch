@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="icon" href="http://pospal.com.au/wp-content/uploads/2019/08/favicon.ico" sizes="32x32">
-
+	<link rel = "stylesheet" href="navBar.css">
+	<link rel = "stylesheet" href="header.css">
+	<script src="navBar.js"></script>
     
 
     <title>TapTouch</title>
@@ -491,8 +493,81 @@ footer#footer-area table td{display:table-row;
 .kc-container{max-width:100%;}</style><style type="text/css" id="kc-css-render"></style><script type="text/javascript" charset="UTF-8" src="./productsHolder_files/common.js.download"></script><script type="text/javascript" charset="UTF-8" src="./productsHolder_files/util.js.download"></script></head>
 
 <body class="page-template page-template-elementor_theme page page-id-16775 logged-in admin-bar custom-background theme-appai kingcomposer kc-css-system woocommerce-js woolentor_current_theme_appai elementor-default elementor-kit-15424 elementor-page elementor-page-16775 customize-support e--ua-blink e--ua-edge e--ua-webkit" data-elementor-device-mode="desktop">
-
+    <!-- MobilePhone navBar-->
+  <div onmousedown="expandNavigation()"  id = "navBarPhonee"> 
     
+    <?xml version="1.0" ?><svg height="32" id="expand" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d=" M16 4 L28 4 L28 16 L24 12 L20 16 L16 12 L20 8z M4 16 L8 20 L12 16 L16 20 L12 24 L16 28 L4 28z "/></svg>
+
+  </div>
+	<div id = "expandedTab">
+          <a href="./index.html"> Home</a>
+          <a href="./Packages.html"> Packages</a>
+          <a href="./products.html" id = "product"> Products</a> 
+          <a href="./contact.html"> Contact Us</a>
+  </div>
+  
+  <!-- Desktop navBar-->
+
+  <div id = "navBar">
+    <div id = "logo"> 
+        <!-- <img src="logo.png" style="height: inherit;">   -->
+        <p>TapTouch</p>
+    </div>
+    <div id ="menu">
+        <ul class = "menuContainer">
+            <li> <a href="./index.html"> Home</a> </li> 
+    <li> <a href="./Packages.html"> Packages</a> </li> 
+            <li > 
+                <a href="./products.html" id = "product"> Products</a> 
+                <div id="submenuArea"></div> 
+
+                 <div id="submenu" > 
+                    <div id = "triangle"></div> 
+                    <div class = "item "> 
+                        
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Pos<br> Systems </p>
+                        </div>
+                    </div>
+                    <div class = "item">   
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Wifi <br>Printers </p>
+
+                        </div>
+                    </div>
+                    <div class = "item"> 
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Thermal <br> devices </p>
+
+                        </div>
+                    </div>
+                    <div class = "item"> 
+                        <div class ="subitem1"> 
+                        </div>
+                        <div class ="subitem2">
+                            <p>Wifi <br>Device </p>
+
+                        </div>
+                    </div>
+
+                 </div>
+            </li>
+            <li> <a href="./contact.html"> Contact Us</a>  </li>
+        </ul>
+       
+    </div>
+    <div id = "logo" style="visibility: hidden; height: inherit;"> </div>
+</div>
+
     <!--  THEME PRELOADER AREA-->
 
     
@@ -538,60 +613,7 @@ footer#footer-area table td{display:table-row;
 								</div>
 					</div>
 		</section>
-				<section class="elementor-section elementor-top-section elementor-element elementor-element-979efb3 elementor-section-stretched elementor-hidden-desktop elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="979efb3" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;classic&quot;}" style="width: 1695px; left: 0px;">
-						<div class="elementor-container elementor-column-gap-default">
-							<div class="elementor-row">
-					<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-a5a5ce3" data-id="a5a5ce3" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-a578a08 elementor-invisible elementor-widget elementor-widget-heading" data-id="a578a08" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default"><a href="https://pudurobotic.com.au/">Home</a></h2>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-f3e5513" data-id="f3e5513" data-element_type="column">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-d3a945a elementor-invisible elementor-widget elementor-widget-heading" data-id="d3a945a" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default"><a href="https://pudurobotic.com.au/products">Product</a></h2>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-c99183f" data-id="c99183f" data-element_type="column" data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-			<div class="elementor-column-wrap elementor-element-populated">
-							<div class="elementor-widget-wrap">
-						<div class="elementor-element elementor-element-7e5c752 elementor-invisible elementor-widget elementor-widget-heading" data-id="7e5c752" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInDown&quot;}" data-widget_type="heading.default">
-				<div class="elementor-widget-container">
-			<h2 class="elementor-heading-title elementor-size-default"><a href="https://pudurobotic.com.au/contact">Contact Us</a></h2>		</div>
-				</div>
-						</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-8a7a136" data-id="8a7a136" data-element_type="column">
-			<div class="elementor-column-wrap">
-							<div class="elementor-widget-wrap">
-								</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-7a23a60" data-id="7a23a60" data-element_type="column">
-			<div class="elementor-column-wrap">
-							<div class="elementor-widget-wrap">
-								</div>
-					</div>
-		</div>
-				<div class="elementor-column elementor-col-16 elementor-top-column elementor-element elementor-element-962be8c" data-id="962be8c" data-element_type="column">
-			<div class="elementor-column-wrap">
-							<div class="elementor-widget-wrap">
-								</div>
-					</div>
-		</div>
-								</div>
-					</div>
-		</section>
+	
 				<section class="elementor-section elementor-top-section elementor-element elementor-element-cc1563b elementor-section-full_width elementor-section-height-full elementor-section-content-middle elementor-section-stretched elementor-section-height-default elementor-section-items-middle" data-id="cc1563b" data-element_type="section" data-settings="{&quot;stretch_section&quot;:&quot;section-stretched&quot;,&quot;background_background&quot;:&quot;classic&quot;}" style="width: 1695px; left: -15px;">
 							<div class="elementor-background-overlay"></div>
 							<div class="elementor-container elementor-column-gap-default">
@@ -1379,51 +1401,6 @@ var elementorAdminBarConfig = {"elementor_edit_page":{"id":"elementor_edit_page"
 		</script>
 	<!--<![endif]-->
 
-
-		<div id="wpadminbar" class="nojq">
-						<div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Toolbar">
-							<ul id="wp-admin-bar-root-default" class="ab-top-menu"><li id="wp-admin-bar-wp-logo" class="menupop">
-							<span class="ab-icon"></span>
-							<span class="screen-reader-text">About WordPress</span>
-							</a><div class="ab-sub-wrapper">
-				
-				<ul id="wp-admin-bar-wp-logo-default" class="ab-submenu">
-				<ul id="wp-admin-bar-wp-logo-external" class="ab-sub-secondary ab-submenu"><li id="wp-admin-bar-wporg">
-				<a class="ab-item" href="https://wordpress.org/">WordPress.org</a></li><li id="wp-admin-bar-documentation">
-				<a class="ab-item" href="https://codex.wordpress.org/">Documentation</a></li>
-				<li id="wp-admin-bar-support-forums">
-				<a class="ab-item" href="https://wordpress.org/support/">Support</a></li>
-				<li id="wp-admin-bar-feedback"><a class="ab-item" href="https://wordpress.org/support/forum/requests-and-feedback">Feedback</a>
-				</li></ul></div></li><li id="wp-admin-bar-site-name" class="menupop">
-				<div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu"><li id="wp-admin-bar-dashboard">
-				
-				<li id="wp-admin-bar-background" class="hide-if-customize">
-				<a class="ab-item" href="http://pospal.com.au/wp-admin/themes.php?page=custom-background">Background</a></li></ul></div></li>
-				
-				<li id="wp-admin-bar-updates"><a class="ab-item" href="https://taptouchpos.com.au/" title="Home Page">
-					<span class="ab-label">|  Home  |</span>
-					
-					
-					<span class="screen-reader-text">Our HomePage</span></a>
-					
-				</li> 
-				
-				<li id="wp-admin-bar-updates"><a class="ab-item" href="https://taptouchpos.com.au/products" title="Products Page">
-					<span class="ab-label">| Products  |</span>
-					
-					
-					<span class="screen-reader-text">our products page </span></a>
-				</li>
-					<li id="wp-admin-bar-updates"><a class="ab-item" href="https://taptouchpos.com.au/contact" title="Contact Page">
-					<span class="ab-label">| Contact |</span>
-					
-					
-					<span class="screen-reader-text">our products page </span></a>
-				</li>
-				
-			
-					</div>
-		
 
 
 <iframe owner="archetype" title="archetype" style="display: none; visibility: hidden;" src="./productsHolder_files/saved_resource(1).html"></iframe><iframe data-product="web_widget" title="No content" tabindex="-1" aria-hidden="true" src="./productsHolder_files/saved_resource(2).html" style="width: 0px; height: 0px; border: 0px; position: absolute; top: -9999px;"></iframe><div><iframe title="Opens a widget where you can chat to one of our agents" id="launcher" tabindex="0" style="width: 107px; height: 50px; padding: 0px; margin: 10px 20px; position: fixed; bottom: 0px; overflow: visible; opacity: 1; border: 0px; z-index: 999998; transition-duration: 250ms; transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1); transition-property: opacity, top, bottom; right: 0px;" src="./productsHolder_files/saved_resource(3).html"></iframe></div></body></html>

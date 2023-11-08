@@ -6,23 +6,17 @@ body{
 }
 
 #navBar{
-    padding-top : 1% !important;
-    padding-bottom : 1% !important;
-
-    box-sizing: border-box;
     top: 0;
     position:fixed;
     display: flex;
-    background-color: white;
     padding: 9px;
-    box-sizing: border-box;
+    height: 40px;
     /* border-style: solid; */
     /* background-color: rgba(255, 0, 0, 0%); */
-    z-index: 100;
+    z-index: 1;
     width: 100vw;
     transition: top 1s, background 1s;
     /* background-color: grey; */
-    overflow: hidden;
     
 }
 p{
@@ -32,17 +26,19 @@ p{
 }
 #navBar > div >p{
     font-family: 'Alliance No. 2', sans-serif;
-    /* display: inline; */
+    display: inline;
     margin-left : 10px;
-    margin :0 ;
     font-size:   clamp(25px, 1.0vw, 33px);
-    /* background: linear-gradient(to right,#6b6b6e 0%, white 10%, #6b6b6e 20%); */
-    /* background-repeat:no-repeat; */
-    /* background-color: #6b6b6e ; */
-    /* transition: background-Position 2s, letter-spacing 1s;
+    background: linear-gradient(to right,#6b6b6e 0%, white 10%, #6b6b6e 20%);
+    background-repeat:no-repeat;
+    background-color: #6b6b6e ;
+    transition: background-Position 2s, letter-spacing 1s;
     background-position: -30px;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; */
+     /*clip background based on text */
+    -webkit-text-fill-color: transparent;
+     /* set text to transparent */
+    /* animation: shineLeft 3s infinite ease; */
 
 }
 
@@ -60,18 +56,13 @@ p{
 #navBar > #logo{
     
     overflow: hidden;
+    display: flex;
+    height: 30px;
     /* margin-right: 50px; */
     align-items: center;
     /* background-color: red; */
-    min-width: 200px;
-    overflow: hidden;
-    word-break: break-all;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    min-width: 200;
 }
-
-
 #navBar> #menu{
     display: flex;
     position: relative;
@@ -83,19 +74,6 @@ p{
     flex: 1;
 }
 
-.menuContainer a{
-  font-size: 15px !important;
-}
-
-.menuContainer li{
-    margin-left: 2px;
-    margin-right: 2px;
-
-}
-.menuContainer li :hover{
-    /* background-color: red; */
-    text-decoration: underline;
-}
 
 
 
@@ -132,8 +110,7 @@ p{
 #menu >ul{
 	position:relative;
     padding:0;
-	list-style-type: none; 
-  width: 100%;
+	list-style-type: none;
 }
 
 #menu >  ul > li{

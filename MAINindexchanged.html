@@ -20,6 +20,8 @@
          	}
          }());
       </script>
+        <script src="navBar.js"></script>
+
       <!-- This site is optimized with the Yoast SEO plugin v13.1 - https://yoast.com/wordpress/plugins/seo/ -->
       <!-- Admin only notice: this page does not show a meta description because it does not have one, either write it for this page specifically or go into the [SEO - Search Appearance] menu and set up a template. -->
       <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -528,6 +530,21 @@
    </head>
    <body class="page-template page-template-elementor_theme page page-id-16582 logged-in admin-bar custom-background theme-appai kc-css-system woocommerce-js woolentor_current_theme_appai elementor-default elementor-kit-15424 elementor-page elementor-page-16582 customize-support e--ua-blink e--ua-edge e--ua-webkit" data-elementor-device-mode="desktop">
     
+
+      <!-- MobilePhone navBar-->
+  <div onmousedown="expandNavigation()"  id = "navBarPhonee"> 
+    
+    <?xml version="1.0" ?><svg height="32" id="expand" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d=" M16 4 L28 4 L28 16 L24 12 L20 16 L16 12 L20 8z M4 16 L8 20 L12 16 L16 20 L12 24 L16 28 L4 28z "/></svg>
+
+  </div>
+
+  <div id = "expandedTab">
+          <a href="./index.html"> Home</a>
+          <a href="./Packages.html"> Packages</a>
+          <a href="./products.html" id = "product"> Products</a> 
+          <a href="./contact.html"> Contact Us</a>
+  </div>
+  
     <!-- Desktop navBar-->
 
     <div id = "navBar">
