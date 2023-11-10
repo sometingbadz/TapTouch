@@ -409,18 +409,7 @@
             console.log("Expand package " + packageNumber);
             let packageContainer = document.getElementById("Packages");
             let expandedContent = document.getElementsByClassName("ExpandedContent");
-
-            // switch(packageNumber){
-            //     case 1 :    packageContainer.style.gridTemplateColumns = "5fr 1fr 1fr"
-            //     break;
-            //     case 2:     packageContainer.style.gridTemplateColumns = "1fr 5fr 1fr"
-            //     break;
-            //     case 3:     packageContainer.style.gridTemplateColumns = "1fr 1fr 5fr"
-            //     break;
-            //     default :   packageContainer.style.gridTemplateColumns = "1fr 1fr 1fr"
-            //     break;                
-            // }
-
+            let compareFeatureContainerButton = document.getElementById("compareFeatureContainer");
             let pageWidth = window.innerWidth;
 
 
@@ -428,6 +417,7 @@
                 if (packageNumber == 0 ){
                     if (pageWidth > mobileWidth)
                     {
+                        compareFeatureContainerButton.style.display = "none";
                         expandedContent[i].style.height = "auto";
                         expandedContent[i].style.minHeight = "7000px";
                         expandedContent[i].style.width = "100%";
@@ -439,6 +429,7 @@
                         window.open("https://docs.google.com/spreadsheets/d/e/2PACX-1vQYE_PgCazGAfUTlNpx3svt7148DmGffcnWJIUh9diZqCDSem5JZ9034XYNQMGyXx0_Fa_89wS_x-33/pubhtml?gid=0&single=true", '_blank');
                     }
                 }else if (packageNumber === -1){
+                  compareFeatureContainerButton.style.display = "block";
                         expandedContent[i].style.height = "0px";
                         expandedContent[i].style.width = "0px";
                         expandedContent[i].style.minHeight = "0px";
@@ -482,9 +473,9 @@
         <p>TapTouch</p>
     </div>
     <div id ="menu">
-        <ul class = "menuContainer">
+        <ul class = "menuContainer" style = "position: relative;">
             <li> <a href="./index.html"> Home</a> </li> 
-    <li> <a href="./Packages.html"> Packages</a> </li> 
+            <li> <a href="./Packages.html"> Packages</a> </li> 
             <li > 
                 <a href="./products.html" id = "product"> Products</a> 
                 <div id="submenuArea"></div> 
@@ -541,15 +532,15 @@
 
 
   
-    <div class = "packageContainer">
+    <div class = "packageContainer" style = "position: relative;">
         <!-- <div style = "background-color: red; width: 100%; height: 100vh;">
 
 
         </div> -->
-        <div id = "Packages">
+        <div id = "Packages" style = "position: relative;">
             <!-- BUBBLE TEA -->
-            <div class = "package"  style = "background-color: lightgreen;">
-                <div class = "packageInnerContainer">   
+            <div class = "package"  style = "background-color: lightgreen; position: relative;">
+                <div class = "packageInnerContainer" style = "position: relative;">   
                     <div class = "MainDescriptionTopContainer">
                         <h1> Bubble Tea / Beverage Lite </h1>
                         <!-- <div style = "border: 1px solid black; padding: 1%; box-sizing: border-box; ">
@@ -569,6 +560,13 @@
                         </div> -->
                     </div>
 
+                   
+                    <div class = "packageInfo" style = "padding-bottom: 15px;">
+                      <h3> Lite Software Application </h3>
+                        <span style = "font-size: 15px;">
+                          [$10 ex GST per WEEK plan] or $47.66 inc GST per month
+                        </span>
+                    </div>
                     <div class = "packageInfo">
                                 <h3> Package 1 </h3>
                                 <p> T2s Dual Screen 15" + 10.1   </p>
@@ -578,8 +576,6 @@
                                 <p style = "font-weight: 600;"> $2199 inc GST </p>
 
                     </div>
-    
-        
                     <div class = "packageInfo">
                             <h3> Popoular Addons </h3>
                                 <p> Self-ordering kiosk activation  </p>
@@ -588,9 +584,8 @@
                                 <p> Staff Management </p>
                                 <p> Advance Reporting </p>
                     </div>
+                 
 
-                    
-    
                     <div class = "spacer"> </div>
                    
                     <div class = "moreInfo">
@@ -604,18 +599,13 @@
                       
                 </div>        
             </div>
-           
 
 
-
-
-
-
-            <!-- Hardware package -->
+            <!-- Hospitality Lite -->
             <div class = "package" style = "background-color: lightblue;"  >
                 <div class = "packageInnerContainer">   
                     <div class = "MainDescriptionTopContainer">
-                        <h1> Hardware Packages </h1>
+                        <h1> Hospitality Lite </h1>
                         <div class="imageContainer">
                             <img src = "./package23.png"/>
                         </div>
@@ -628,7 +618,13 @@
                             </h3>
                         </div>
                     </div>
-
+                    <div class = "packageInfo" style = "padding-bottom: 15px;">
+                      <h3> Lite Software Application </h3>
+                        <span style = "font-size: 15px;">
+                          [$10 ex GST per WEEK plan] or $47.66 inc GST per month
+                        </span>
+                    </div>
+       
                     <div class = "packageInfo">
                                 <h3> Package 2 </h3>
                                 <p> T2s Dual Screen Lite 15" + 10.1   </p>
@@ -639,7 +635,8 @@
 
                     </div>
     
-        
+           
+    
                     <div class = "packageInfo">
                             <h3> Popoular Addons </h3>
                                 <p> Self-ordering kiosk activation  </p>
@@ -647,12 +644,15 @@
                                 <p> QR ordering  </p>
                     </div>
                 
+         
+
+
 
                     <div class = "spacer" >  </div>
 
                     
                     <div class = "moreInfo">
-                        
+
                         <div class = "featuresContainer">
                             <span> | Free Plan Feature | </span>
                             <span>  Advance Payment  | </span>
@@ -662,12 +662,6 @@
                       
 
                         
-
-
-
-
-
-
 
 
 
@@ -702,7 +696,12 @@
 
                         
                     </div>
-
+                    <div class = "packageInfo" style = "padding-bottom: 15px;">
+                      <h3> <span style = "">Plus  </span>Software Application </h3>
+                        <span style = "font-size: 15px;">
+                          [$30 ex GST per WEEK plan] or $143 inc GST per month
+                        </span>
+                    </div>
                     <div class = "packageInfo">
                                 <h3> Package 2 </h3>
                                 <p> T2s Dual Screen Lite 15" + 10.1   </p>
@@ -713,6 +712,8 @@
                                 <p style = "font-weight: 600;"> $1999 inc GST </p>
 
                     </div>
+
+            
 
                      <div class = "spacer" >  </div> 
                      <div class = "moreInfo">
@@ -736,22 +737,8 @@
                 </div>        
             </div>
 
-
-
-
-
-
             <div> </div>
-            <div style = "width: 100%; height: 150px; ">
-                
-                         
-                <button class="btn-31"  onclick="expandPackage(0)">
-                    <span class="text-container">
-                      <span class="text">Compare packages</span>
-                    </span>
-                </button> 
-
-            </div>            
+            <div style = "width: 100%; "></div>            
             <div>  </div>
 
             <div class = "ExpandedContent" data-myattribute="1">            
@@ -2322,8 +2309,19 @@
 
         </div>
 
+        <div id ="compareFeatureContainer" style = "width: 100%; ">
+         
+          <button class="btn-31"  onclick="expandPackage(0)">
+              <span class="text-container">
+                <span class="text">Compare Features</span>
+              </span>
+          </button> 
+          <div style = "text-align: center; margin-top: 10px;">
+            ANZ, TYRO or AYDEN Eftpos integration required (Otherwise additional $30 ex GST per month fee will be incurred). We will directly charge the client.
+            <br>* Wholesale Rebate bonus (can only be used for software upgrades)    
+          </div>
+        </div>  
     </div>
-
 
 </body>
 
