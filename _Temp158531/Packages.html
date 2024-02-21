@@ -1,0 +1,2328 @@
+<html>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <link rel = "stylesheet" href="navBar.css">
+  <link rel = "stylesheet" href="header.css">
+  <script src="navBar.js"></script>
+
+    <script>
+        let AlignMainDescription = () => { 
+            let mainDescription = document.getElementsByClassName("MainDescriptionTopContainer");
+            let largest = 0;
+            let went = false;
+
+            for (let i =0; i < mainDescription.length;i++){
+                let item = mainDescription[i];
+
+                if (!went)
+                {
+                    item.style.minHeight = "0px";
+                    if (item.clientHeight > largest) largest = item.clientHeight;
+                    if (i == mainDescription.length-1){
+                        went = true;
+                        i = -1;
+                        console.log("Largest = " + largest);
+                    } 
+
+                } else item.style.minHeight = `${largest}px`;
+
+
+
+            };
+        }
+
+        let alignBottomContent = () => {
+            let largest = 0;
+            let items = document.getElementsByClassName("moreInfo");
+
+          console.log("Aligning content");
+
+            for (let i =0; i < items.length;i++){
+                let cr = items[i];
+                if (cr.clientHeight > largest) largest = cr.clientHeight;
+            }
+            let spacer = document.getElementsByClassName("spacer");
+            for (let i =0; i < spacer.length;i++){
+                let cr = spacer[i];
+                cr.style.height = `${largest+25}px`;
+            }
+
+            AlignMainDescription();
+
+        }
+        document.addEventListener('DOMContentLoaded', (event) => {alignBottomContent()});
+        window.addEventListener('resize', (event) => {  
+            alignBottomContent();
+            expandPackage(-1);
+        });
+
+
+    </script>
+
+
+    <style>
+        @media only screen and (max-width: 1000px) {
+            #Packages {
+                background-color: lightblue;
+                grid-template-columns:100%;
+
+            }
+        }
+        @media only screen and (min-width: 1000px) {
+            #Packages {
+                background-color: lightblue;
+                grid-template-columns:100%;
+                
+                grid-template-columns: 1fr 1fr 1fr; /* Adjust column widths as needed */
+              }
+        }
+    </style>
+
+
+    <style>
+
+
+
+    
+        .packageContainer{
+            width: 100%;
+            overflow: hidden;
+            padding: 2%;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        .MainDescriptionTopContainer{
+            transition: all 1s;
+        }
+
+        #Packages{
+            background-color: white;
+            width: 100%;
+            box-sizing: border-box;
+            display: grid;
+            gap :0.5%;
+            transition: grid-template-columns 2s; /* Transition the grid-template-columns property */
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .package:hover{
+            border: 1px solid grey;
+            background-color: black !important;
+            
+        }
+        .package{
+            border: 0.1px solid grey;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+            width : 100%;
+            padding-top: 2%;
+            box-sizing: border-box;
+        }
+
+        .mainDescriptionContainer{
+            width: 100%;
+            margin-bottom: 15px;
+
+        }
+        .mainDescriptionContainer h3{
+            font-weight: 300;
+        }
+        .mainDescriptionContainer span{
+            font-size: 30px;
+        }
+
+        .spacer{
+            background-color: black;
+            transition: all 1s;
+        }
+        .moreInfo{
+            position: absolute; bottom: 15px; width: 100%;
+        }
+    
+        .ExpandedContent{
+            display: none;
+            /* padding: 2%; */
+            /* box-sizing: border-box; */
+            width : 0px;
+            height: 0px;
+            display: block;
+            overflow: hidden;
+            background-color: white;
+            /* border: 1px solid black; */
+            /* transition: all 1s; */
+        }
+
+
+        .packageInnerContainer{
+            background-color: white;
+            position: relative;
+            word-wrap: break-word;
+            word-break: break-all;
+            padding: 2%;
+            padding-left: 5%;
+            padding-right: 5%;
+            box-sizing: border-box;
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            text-align: center;
+            min-height: 100%;
+        }
+        .btn-31,
+        .btn-31 *,
+        .btn-31 :after,
+        .btn-31 :before,
+        .btn-31:after,
+        .btn-31:before {
+        border: 0 solid;
+        box-sizing: border-box;
+        }
+
+        .btn-31 {
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: button;
+            background-color: #000;
+            background-image: none;
+            color: #fff;
+            cursor: pointer;
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+                Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+                Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+            font-size: 100%;
+            font-weight: 900;
+            line-height: 1.5;
+            margin: 0;
+            -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+            padding: 0;
+        }
+
+        .btn-31:disabled {
+        cursor: default;
+        }
+
+        .btn-31:-moz-focusring {
+        outline: auto;
+        }
+
+        .btn-31 svg {
+        display: block;
+        vertical-align: middle;
+        }
+
+        .btn-31 [hidden] {
+        display: none;
+        }
+
+        .btn-31 {
+        border-width: 1px;
+        padding: 1rem 2rem;
+        position: relative;
+        text-transform: uppercase;
+        }
+
+        .btn-31:before {
+        --progress: 100%;
+        background: #fff;
+        -webkit-clip-path: polygon(
+            100% 0,
+            var(--progress) var(--progress),
+            0 100%,
+            100% 100%
+        );
+        clip-path: polygon(
+            100% 0,
+            var(--progress) var(--progress),
+            0 100%,
+            100% 100%
+        );
+        content: "";
+        inset: 0;
+        position: absolute;
+        transition: -webkit-clip-path 0.2s ease;
+        transition: clip-path 0.2s ease;
+        transition: clip-path 0.2s ease, -webkit-clip-path 0.2s ease;
+        }
+
+        .btn-31:hover:before {
+        --progress: 0%;
+        }
+
+        .btn-31 .text-container {
+        display: block;
+        overflow: hidden;
+        position: relative;
+        }
+
+        .btn-31 .text {
+        display: block;
+        font-weight: 900;
+        mix-blend-mode: difference;
+        position: relative;
+        }
+
+        .btn-31:hover .text {
+        -webkit-animation: move-up-alternate 0.3s ease forwards;
+        animation: move-up-alternate 0.3s ease forwards;
+        }
+
+        @-webkit-keyframes move-up-alternate {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(80%);
+        }
+
+        51% {
+            transform: translateY(-80%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+        }
+
+        @keyframes move-up-alternate {
+        0% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(80%);
+        }
+
+        51% {
+            transform: translateY(-80%);
+        }
+
+        to {
+            transform: translateY(0);
+        }
+        }
+
+
+
+
+        .package h4{
+            padding: 0;
+            margin: 0;
+        }
+        .featuresContainer{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .featuresContainer span{
+            /* border-right: 1px solid black; */
+            /* border-left: 1px solid black; */
+            padding-left:3px ;
+            padding-right: 3px;
+            margin-left:2px;
+        }
+
+        .moreDetail{
+            margin-top: 15px;
+            background-color: darkgreen;
+            width: 100%;
+            border-radius: 2em;
+            box-sizing: border-box;
+            /* border: 13%;
+             */
+            color: white;
+            padding: 3%;
+        }
+
+        .packageInfo{
+            border: 1px solid black;
+            width: 100% !important;
+            border-radius: 0.5em;
+            margin-bottom: 15px;
+        }
+
+        .imageContainer{
+            width: 100%;
+            height: 200px;
+            padding: 2%;
+            box-sizing: border-box;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        .imageContainer img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    
+
+
+        .packageInfo p{
+            border-bottom: 0.3px solid black;
+            padding: 0;
+            padding-bottom: 13px;
+            margin:4px;
+        }
+        .packageInfo p:last-child {
+            border-bottom:none;
+            padding-bottom: 13px;
+            padding-top: 13px;
+
+        }
+        .packageInfo p:nth-child(2) {
+            border-bottom:none;
+            border-top: 0.3px solid black;
+            border-bottom: 0.3px solid black;
+            padding-top: 13px;
+            padding-bottom: 13px;
+
+        }
+
+        .mainPoint{
+            background-color: black;
+            color: white;
+            font-weight: 700;
+            padding: 1%;
+            box-sizing: border-box;
+            text-decoration: underline;
+        }
+
+    </style>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" href="http://pospal.com.au/wp-content/uploads/2019/08/favicon.ico" sizes="32x32">
+
+    <link rel "stylesheet" type="text/css" href=".PackagesStyling.css" >
+
+    <script>
+        let mobileWidth = 1000;
+        let expandPackage = (packageNumber) => { 
+            console.log("Expand package " + packageNumber);
+            let packageContainer = document.getElementById("Packages");
+            let expandedContent = document.getElementsByClassName("ExpandedContent");
+            let compareFeatureContainerButton = document.getElementById("compareFeatureContainer");
+            let pageWidth = window.innerWidth;
+
+
+            for (let i =0; i < expandedContent.length; i++){              
+                if (packageNumber == 0 ){
+                    if (pageWidth > mobileWidth)
+                    {
+                        compareFeatureContainerButton.style.display = "none";
+                        expandedContent[i].style.height = "auto";
+                        expandedContent[i].style.minHeight = "7000px";
+                        expandedContent[i].style.width = "100%";
+
+                    }else{
+                        expandedContent[i].style.height = "0px";
+                        expandedContent[i].style.width = "0px";
+                        expandedContent[i].style.minHeight = "0px";
+                        window.open("https://docs.google.com/spreadsheets/d/e/2PACX-1vQYE_PgCazGAfUTlNpx3svt7148DmGffcnWJIUh9diZqCDSem5JZ9034XYNQMGyXx0_Fa_89wS_x-33/pubhtml?gid=0&single=true", '_blank');
+                    }
+                }else if (packageNumber === -1){
+                  compareFeatureContainerButton.style.display = "block";
+                        expandedContent[i].style.height = "0px";
+                        expandedContent[i].style.width = "0px";
+                        expandedContent[i].style.minHeight = "0px";
+                    
+                } 
+            }
+            if (pageWidth > mobileWidth){
+
+                window.scrollTo({top: 1100, behavior: 'smooth'});
+
+            }
+        }
+        document.addEventListener("transitionend", () => { alignBottomContent()});
+
+    </script>
+
+</head>
+
+
+<body>  
+     
+    <!-- MobilePhone navBar-->
+  <div onmousedown="expandNavigation()"  id = "navBarPhonee"> 
+    
+    <?xml version="1.0" ?><svg height="32" id="expand" viewBox="0 0 32 32" width="32" xmlns="http://www.w3.org/2000/svg"><path d=" M16 4 L28 4 L28 16 L24 12 L20 16 L16 12 L20 8z M4 16 L8 20 L12 16 L16 20 L12 24 L16 28 L4 28z "/></svg>
+
+  </div>
+
+  <div id = "expandedTab">
+          <a href="./index.html"> Home</a>
+          <a href="./Packages.html"> Packages</a>
+          <a href="./products.html" id = "product"> Products</a> 
+          <a href="./contact.html"> Contact Us</a>
+  </div>
+  
+  <!-- Desktop navBar-->
+
+  <div id = "navBar">
+    <div id = "logo"> 
+        <!-- <img src="logo.png" style="height: inherit;">   -->
+        <p>TapTouch</p>
+    </div>
+    <div id ="menu">
+        <ul class = "menuContainer" style = "position: relative;">
+            <li> <a href="./index.html"> Home</a> </li> 
+            <li> <a href="./Packages.html"> Packages</a> </li> 
+            <li > 
+                <a href="./products.html" id = "product"> Products</a> 
+                <div id="submenuArea"></div> 
+
+                 <div id="submenu" > 
+                    <div id = "triangle"></div> 
+                    <div class = "item "> 
+                        
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Pos<br> Systems </p>
+                        </div>
+                    </div>
+                    <div class = "item">   
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Wifi <br>Printers </p>
+
+                        </div>
+                    </div>
+                    <div class = "item"> 
+                        <div class ="subitem1">
+                            
+                        </div>
+                        <div class ="subitem2">
+                            <p>Thermal <br> devices </p>
+
+                        </div>
+                    </div>
+                    <div class = "item"> 
+                        <div class ="subitem1"> 
+                        </div>
+                        <div class ="subitem2">
+                            <p>Wifi <br>Device </p>
+
+                        </div>
+                    </div>
+
+                 </div>
+            </li>
+            <li> <a href="./contact.html"> Contact Us</a>  </li>
+        </ul>
+       
+    </div>
+    <div id = "logo" style="visibility: hidden; height: inherit;"> </div>
+</div>
+
+
+
+
+
+  
+    <div class = "packageContainer" style = "position: relative;">
+        <!-- <div style = "background-color: red; width: 100%; height: 100vh;">
+
+
+        </div> -->
+        <div id = "Packages" style = "position: relative;">
+            <!-- BUBBLE TEA -->
+            <div class = "package"  style = "background-color: lightgreen; position: relative;">
+                <div class = "packageInnerContainer" style = "position: relative;">   
+                    <div class = "MainDescriptionTopContainer">
+                        <h1> Bubble Tea / Beverage Lite </h1>
+                        <!-- <div style = "border: 1px solid black; padding: 1%; box-sizing: border-box; ">
+                            <h3 style = "margin: 0;"> Perfect for </h3> 
+    
+                        </div> -->
+                        <div class="imageContainer">
+                            <img src = "./package1.png"/>
+                        </div>
+    
+                        <!-- <div class = "mainDescriptionContainer">
+                            <h3>
+                                Main description goes here ........................
+                                <br>
+                                from <span> $00.00</span> / month
+                            </h3>
+                        </div> -->
+                    </div>
+
+                   
+                    <div class = "packageInfo" style = "padding-bottom: 15px;">
+                      <h3> Lite Software Application </h3>
+                        <span style = "font-size: 15px;">
+                          [$10 ex GST per WEEK plan] or $47.66 inc GST per month
+                        </span>
+                    </div>
+                    <div class = "packageInfo">
+                                <h3> Package 1 </h3>
+                                <p> T2s Dual Screen 15" + 10.1   </p>
+                                <p> Inbuilt receipt printer  </p>
+                                <p> Cashdraw  </p>
+                                <p> Setup, Training and Deployment </p>
+                                <p style = "font-weight: 600;"> $2199 inc GST </p>
+
+                    </div>
+                    <div class = "packageInfo">
+                            <h3> Popoular Addons </h3>
+                                <p> Self-ordering kiosk activation  </p>
+                                <p> Delivery Platform lntegration i Per Channel  </p>
+                                <p> Loyalty I Membership  </p>
+                                <p> Staff Management </p>
+                                <p> Advance Reporting </p>
+                    </div>
+                 
+
+                    <div class = "spacer"> </div>
+                   
+                    <div class = "moreInfo">
+                        <div class = "featuresContainer">
+                            <span> | Free Plan Feature | </span>
+                            <span>  Advance Payment  | </span>
+                            <span> Advertising | </span>
+                            <span> Standard Remote Support </span>
+                        </div>
+                    </div> 
+                      
+                </div>        
+            </div>
+
+
+            <!-- Hospitality Lite -->
+            <div class = "package" style = "background-color: lightblue;"  >
+                <div class = "packageInnerContainer">   
+                    <div class = "MainDescriptionTopContainer">
+                        <h1> Hospitality Lite </h1>
+                        <div class="imageContainer">
+                            <img src = "./package23.png"/>
+                        </div>
+    
+                        <div class = "mainDescriptionContainer">
+                            <h3>
+                                Perfect for : Takeaway restaurant, small cafes
+                                <!-- <br>
+                                from <span> $00.00</span> / month -->
+                            </h3>
+                        </div>
+                    </div>
+                    <div class = "packageInfo" style = "padding-bottom: 15px;">
+                      <h3> Lite Software Application </h3>
+                        <span style = "font-size: 15px;">
+                          [$10 ex GST per WEEK plan] or $47.66 inc GST per month
+                        </span>
+                    </div>
+       
+                    <div class = "packageInfo">
+                                <h3> Package 2 </h3>
+                                <p> T2s Dual Screen Lite 15" + 10.1   </p>
+                                <p> Receipt Printer  </p>
+                                <p> Cashdraw  </p>
+                                <p> Setup, Training and Deployment </p>
+                                <p style = "font-weight: 600;"> $1999 inc GST </p>
+
+                    </div>
+    
+           
+    
+                    <div class = "packageInfo">
+                            <h3> Popoular Addons </h3>
+                                <p> Self-ordering kiosk activation  </p>
+                                <p> Delivery Platform lntegration / Per Channel  </p>
+                                <p> QR ordering  </p>
+                    </div>
+                
+         
+
+
+
+                    <div class = "spacer" >  </div>
+
+                    
+                    <div class = "moreInfo">
+
+                        <div class = "featuresContainer">
+                            <span> | Free Plan Feature | </span>
+                            <span>  Advance Payment  | </span>
+                            <span> Advertising | </span>
+                            <span> Standard Remote Support | </span>
+                        </div>
+                      
+
+                        
+
+
+
+                        
+                        <!-- <button class="btn-31"  onclick="expandPackage(2)">
+                            <span class="text-container">
+                              <span class="text">More Info</span>
+                            </span>
+                        </button>  -->
+                    </div>
+               
+                </div>        
+            </div>
+        
+
+            <!-- Hospitality Plus -->
+            <div class = "package" style = "background-color: lightcoral;">
+                <div class = "packageInnerContainer">   
+                    <div class="MainDescriptionTopContainer">
+                        <h1> Hospitality Plus </h1>
+                        <div class="imageContainer">
+                            <img src = "package23.png"/>
+                        </div>
+    
+                        <div class = "mainDescriptionContainer">
+                            <h3>
+                                Perfect for : Growing Hospitality business
+                                <br>
+                                <!-- from <span> $00.00</span> / month -->
+                            </h3>
+                        </div>
+
+                        
+                    </div>
+                    <div class = "packageInfo" style = "padding-bottom: 15px;">
+                      <h3> <span style = "">Plus  </span>Software Application </h3>
+                        <span style = "font-size: 15px;">
+                          [$30 ex GST per WEEK plan] or $143 inc GST per month
+                        </span>
+                    </div>
+                    <div class = "packageInfo">
+                                <h3> Package 2 </h3>
+                                <p> T2s Dual Screen Lite 15" + 10.1   </p>
+                                <p> Receipt Printer  </p>
+                                <p> Cashdraw  </p>
+                                <p> Setup, Training and Deployment </p>
+                                <p> Free Wireless Router if additional wireless printer, kDS or selfordering kiosk purchased</p>
+                                <p style = "font-weight: 600;"> $1999 inc GST </p>
+
+                    </div>
+
+            
+
+                     <div class = "spacer" >  </div> 
+                     <div class = "moreInfo">
+                        
+                        <div class = "featuresContainer">
+                            <span> | All Lite Features | </span>
+                            <span>  Advance Front of House  | </span>
+                            <span> Multi Device | </span>
+                            <span> Standard Remote Support </span>
+                            <span> Management | </span>
+                            <span> Advance reporting by email |</span>
+                        </div>
+                      
+                        <!-- <button class="btn-31"  onclick="expandPackage(3)">
+                            <span class="text-container">
+                              <span class="text">More Info</span>
+                            </span>
+                        </button>  -->
+                    </div>
+                       
+                </div>        
+            </div>
+
+            <div> </div>
+            <div style = "width: 100%; "></div>            
+            <div>  </div>
+
+            <div class = "ExpandedContent" data-myattribute="1">            
+                <div>
+
+
+                    <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+                    <html>
+                      <head>
+                          <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                          <meta name="generator" content="PhpSpreadsheet, https://github.com/PHPOffice/PhpSpreadsheet">
+                          <title>Untitled Spreadsheet</title>
+                          <meta name="author" content="Unknown Creator" />
+                          <meta name="title" content="Untitled Spreadsheet" />
+                          <meta name="company" content="Microsoft Corporation" />
+                        <style type="text/css">
+                          html { font-family:Calibri, Arial, Helvetica, sans-serif; font-size:11pt; background-color:white }
+                          a.comment-indicator:hover + div.comment { background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em }
+                          a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em }
+                          div.comment { display:none }
+                          table { border-collapse:collapse; page-break-after:always }
+                          .gridlines td { border:1px dotted black }
+                          .gridlines th { border:1px dotted black }
+                          .b { text-align:center }
+                          .e { text-align:center }
+                          .f { text-align:right }
+                          .inlineStr { text-align:left }
+                          .n { text-align:right }
+                          .s { text-align:left }
+                          td.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+                          th.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+                          table.sheet0 col.col0 { width:42pt }
+                          table.sheet0 col.col1 { width:42pt }
+                          table.sheet0 tr { height:15pt }
+                        </style>
+                      </head>
+                    
+                      <body>
+                    <style>
+                        td.column1.style0.s{
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                    
+                      }
+                      td.column0.style0.s {
+                        border: 1px solid black;
+                        text-align: center;
+                        
+                      }
+                    tr{
+                      border: 1px solid black;  
+                      word-wrap: break-word;
+                      
+                      
+                    }
+                    .column{
+                      border:1px solid;
+                    }
+                    table{
+                      width: 100%;
+                    }
+                    @page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+                    body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+                    </style>
+                        <table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+                            <col class="col0">
+                            <col class="col1">
+                            <tbody>
+                              <tr class="row0">
+                                <td  class = "mainPoint"  class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Multi Channel Ordering</span></td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row1">
+                                <td class="column0 style0 s">Drag &amp; drop OneMenu</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row2">
+                                <td class="column0 style0 s">Dine in/Take Away/Delivery ordering w delivery surcharge auto calculation</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row3">
+                                <td class="column0 style0 s">Manual delivery platform orders</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row4">
+                                <td class="column0 style0 s">Build in online ordering</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row5">
+                                <td class="column0 style0 s">Build in QR-code ordering 2.0 (2% online payment)</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row6">
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Payment &amp; Print</span>  </td>
+                                <td  class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row7">
+                                <td class="column0 style0 s">Manual Discount</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row8">
+                                <td class="column0 style0 s">1 Receipt &amp; 1 kitchen printer</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row9">
+                                <td class="column0 style0 s">Cash, EFTPOS &amp; Multi card</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row10">
+                                <td class="column0 style0 s">Stripe Online Payment</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row11">
+                                <td class="column0 style0 s">Alipay &amp; Wechat Integrated</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row12">
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Management </span></td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row13">
+                                <td class="column0 style0 s">Order Management</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row14">
+                                <td class="column0 style0 s">Table Management Lite</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row15">
+                                <td class="column0 style0 s">Customer profile Lite</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row16">
+                                <td class="column0 style0 s">End-of-day report</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row17">
+                                <td class="column0 style0 s">Mobile report in pocket</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row18">
+                                <td class="column0 style0 s">Invoice list on cloud</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row19">
+                                <td class="column0 style0 s">Remote setting</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row20">
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Support </span></td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row21">
+                                <td class="column0 style0 s">Online knowledge base</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row22">
+                                <td class="column0 style0 s">Online training videos</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row23">
+                                <td class="column0 style0 s">Lifecycle free SW upgrade &amp; bug fix</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row24">
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Optional Free Payment * (For Wholesale)</span> </td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row25">
+                                <td class="column0 style0 s">Integrated payment w Taptouch Payment</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row26">
+                                <td class="column0 style0 s">Service Surcharge</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row27">
+                                <td class="column0 style0 s">Split Payment</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row28">
+                                <td class="column0 style0 s">Only for Taptouch Payment</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row29">
+                                <td class="column0 style0 s">Available to order advanced models</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row30">
+                                <td class = "mainPoint" class="column0 style0 s"> <span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Enhanced POS</span> </td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row31">
+                                <td class="column0 style0 s">Combo, Setmenu &amp; Multi Course</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row32">
+                                <td class="column0 style0 s">No limited Multi printers</td>
+                                <td class="column1"></td>
+                              </tr>
+                              <tr class="row33">
+                                <td class="column0 style0 s">Reroute to backup printer</td>
+                                <td class="column1"></td>
+                              </tr>
+                              <tr class="row34">
+                                <td class = "mainPoint" class="column0 style0 s"><span style = "font-weight: 900; font-size: 17px; text-decoration: underline;"> Advertising</span></td>
+                                <td class = "mainPoint"  class="column1"></td>
+                              </tr>
+                              <tr class="row35">
+                                <td class="column0 style0 s">In-store ads on client screen</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row36">
+                                <td class="column0 style0 s">Receipt customization ads</td>
+                                <td class="column1"></td>
+                              </tr>
+                              <tr class="row37">
+                                <td class="column0 style0 s">Ads on E-Menu</td>
+                                <td class="column1"></td>
+                              </tr>
+                              <tr class="row38">
+                                <td class="column0 style0 s">Email receipt</td>
+                                <td class="column1"></td>
+                              </tr>
+                              <tr class="row39">
+                                <td class = "mainPoint" class="column0 style0 s">Easy report</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row40">
+                                <td class="column0 style0 s">Sales by Category report</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row41">
+                                <td class="column0 style0 s">Sales by product report</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row42">
+                                <td class = "mainPoint" class="column0 style0 s">Standard remote support</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row43">
+                                <td class="column0 style0 s">By chat &amp; call back in working hours</td>
+                                <td class="column1 style0 s">✔</td>
+                              </tr>
+                              <tr class="row44">
+                                <td class = "mainPoint" class="column0 style0 s">Advance Front of House</td>
+                                <td  class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row45">
+                                <td class="column0 style0 s">Advance table layout</td>
+                                <td class="column1 style0 s"></td>
+                              </tr>
+                              <tr class="row46">
+                                <td class="column0 style0 s">All-in-1 Multi-menu</td>
+                                <td class="column1 style0 s"></td>
+                              </tr>
+                              <tr class="row47">
+                                <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row48">
+                                <td class="column0 style0 s">Multi-staff access w multi-language</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row49">
+                                <td class="column0 style0 s">Log of staff abnormal action</td>
+                                <td class="column1"></td>
+                              </tr>
+                              <tr class="row50">
+                                <td class = "mainPoint" class="column0 style0 s">Multi Device</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row51">
+                                <td class="column0 style0 s">Additional 2 POS devices (inc. POS, Kiosk Tablet, KDS &amp; Pickup board)</td>
+                                <td class="column1 style0 s">$30/device</td>
+                              </tr>
+                              <tr class="row52">
+                                <td class = "mainPoint" class="column0 style0 s">Advanced Table Management</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row53">
+                                <td class="column0 style0 s">- Floor plan with seats info<br />
+                    - Table status with timer &amp; dish fulfill status<br />
+                    - Table operation move, merge, split, combine, bring back, lock &amp; move dishes<br />
+                    - Order operation: Cover no., Seat No.; Quick call away; Quick message to kitchen<br />
+                    - Report: Sales by table, sales by cover</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row54">
+                                <td class = "mainPoint" class="column0 style0 s">Kitchen Display</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row55">
+                                <td class="column0 style0 s">- 15.6 or 21.5&quot; KDS to combine dishes <br />
+                    - Sync dishes status with POS<br />
+                    - Trigger buzzer &amp; SMS<br />
+                    - 3 Level: Expeditor, Kitchen &amp; preparation<br />
+                    - Option to print fufill tickets</td>
+                                <td class="column1 style0 s">$30/device</td>
+                              </tr>
+                              <tr class="row56">
+                                <td class = "mainPoint" class="column0 style0 s">Pick up board</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row57">
+                                <td class="column0 style0 s">- Information for customers to pick food @ counter</td>
+                                <td class="column1 style0 s">$30/device</td>
+                              </tr>
+                              <tr class="row58">
+                                <td class = "mainPoint" class="column0 style0 s">Lotteries</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row59">
+                                <td class="column0 style0 s">- Seamless working with Australia Lotteries System</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row60">
+                                <td class = "mainPoint" class="column0 style0 s">Delivery Platform direct Integration</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row61">
+                                <td class="column0 style0 s">- Ubereats, Hungry Panda, Doordash direct to System. <br />
+                    - One Menu with difference price<br />
+                    - Unified order processing<br />
+                    - Auto route to kitchen printer<br />
+                    - One stock one report</td>
+                                <td class="column1 style0 s">$30/platform<br />
+                    Integrates Ubereats, get HungryPanda for free</td>
+                              </tr>
+                              <tr class="row62">
+                                <td class = "mainPoint" class="column0 style0 s">5s quick call order</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row63">
+                                <td class="column0 style0 s">- Phone caller ID to POS directly<br />
+                    - 5s to process phone call ordering<br />
+                    - Customer order history</td>
+                                <td class="column1 style0 s">$30/line</td>
+                              </tr>
+                              <tr class="row64">
+                                <td class = "mainPoint" class="column0 style0 s">Tablet order @ table</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row65">
+                                <td class="column0 style0 s">- 8&quot; or 10&quot; tablet to order @ table <br />
+                    - Real time stock information, dietary tag &amp; sales tag</td>
+                                <td class="column1 style0 s">$30/device</td>
+                              </tr>
+                              <tr class="row66">
+                                <td class = "mainPoint" class="column0 style0 s">QR Restaurant 3.5</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row67">
+                                <td class="column0 style0 s">- Shared shopping cart<br />
+                    - Check order history any time<br />
+                    - Add dishes any time<br />
+                    - Pay later offline<br />
+                    - One receipt<br />
+                    - Menu by Zone</td>
+                                <td class="column1 style0 s">$30/table +2% online payment</td>
+                              </tr>
+                              <tr class="row68">
+                                <td class = "mainPoint" class="column0 style0 s">Self-ordering Kiosk mode</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row69">
+                                <td class="column0 style0 s">- POS can work as a Kiosk<br />
+                    - 21.5&quot; table seat/wall mout/freestanding POS<br />
+                    - Dietary &amp; sales tag<br />
+                    - Up sales &amp; cross sales</td>
+                                <td class="column1 style0 s">$30/device+$30/software</td>
+                              </tr>
+                              <tr class="row70">
+                                <td class = "mainPoint" class="column0 style0 s">Advance Discount</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row71">
+                                <td class="column0 style0 s">- Customized discount for cost &amp; performance tracking<br />
+                    - Automatic discount for sales policy<br />
+                    1. Buy 1 get 1 free or half price for 2nd<br />
+                    2. 10% discount if total order is over $100</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row72">
+                                <td class = "mainPoint" class="column0 style0 s">Trackable coupon</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row73">
+                                <td class="column0 style0 s">- Publish coupon (can copy to use)<br />
+                    - Come back scan to get discount<br />
+                    - Track performance by marketing channel</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row74">
+                                <td class = "mainPoint" class="column0 style0 s">Flexi Voucher</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row75">
+                                <td class="column0 style0 s">- Offline voucher sales.<br />
+                    - Flexible for different amount of sales<br />
+                    - Must be redeemed to be used once.</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row76">
+                                <td class = "mainPoint" class="column0 style0 s">Digital Gift Card</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row77">
+                                <td class="column0 style0 s">- Brand in the back office easily and define multi amout<br />
+                    - Sell online with SMS &amp; Email to customer<br />
+                    - Scan to redeem on POS (can be used multi-time)</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row78">
+                                <td class = "mainPoint" class="column0 style0 s">Loyalty card w reward point</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row79">
+                                <td class="column0 style0 s">- Define card and reward policy in backoffice<br />
+                    - Customer scan enroll QR or website to register online<br />
+                    - Scan membership QR to get reward or redeem</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row80">
+                                <td class = "mainPoint" class="column0 style0 s">Digital Punch card</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row81">
+                                <td class="column0 style0 s">- Set punch card policy in the back office.<br />
+                    - Customers scan QR or register online to get a Membership card in their digital wallet<br />
+                    - Scan the Membership QR to get reward or redeem</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row82">
+                                <td class = "mainPoint" class="column0 style0 s">Member Credit*</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row83">
+                                <td class="column0 style0 s">- Setup popular top up amount on backend with discount strategy.<br />
+                    - Customer Top-up on POS or get credit<br />
+                    - Customer scan to use the card<br />
+                    - Top up new credit or fill the blance</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row84">
+                                <td class = "mainPoint" class="column0 style0 s">Multi Menu</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row85">
+                                <td class="column0 style0 s">- Time-based menu for holidays, weekends, happy hour<br />
+                    - By channel for dine in/take away/dlivery w different price<br />
+                    - By location different menus for different shop<br />
+                    - By device with different menu like drink menu on bar machine, table service menu for tablet </td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row86">
+                                <td class = "mainPoint" class="column0 style0 s">Stock tracing</td>
+                                <td  class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row87">
+                                <td class="column0 style0 s">- Stock tracking<br />
+                    - Low stock warning<br />
+                    - Auto trigger for sold out</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row88">
+                                <td class = "mainPoint" class="column0 style0 s">Ingredient table</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row89">
+                                <td class="column0 style0 s">- Ingredient table<br />
+                    - Auto print to Kitchen docket</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row90">
+                                <td class = "mainPoint" class="column0 style0 s">Inventory &amp; Vendor Management</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row91">
+                                <td class="column0 style0 s">- Stock in/out &amp; Stock taking<br />
+                    - Vendor management model</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row92">
+                                <td class = "mainPoint" class="column0 style0 s">Advance report &amp; BI analysys</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row93">
+                                <td class="column0 style0 s">- Cloud storage for data over 3 months<br />
+                    - Table status report<br />
+                    - Operation analysis<br />
+                    - Sales report by different scenario<br />
+                    - Weekly &amp; Monthly auto report to accontant<br />
+                    - Advance summary report</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                              <tr class="row94">
+                                <td class = "mainPoint" class="column0 style0 s">Survillance Integration</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row95">
+                                <td class="column0 style0 s">All ordering process and shopping cart log to NVR</td>
+                                <td class="column1 style0 s">$30/POS</td>
+                              </tr>
+                              <tr class="row96">
+                                <td class = "mainPoint" class="column0 style0 s">Staff performance</td>
+                                <td class = "mainPoint" class="column1"></td>
+                              </tr>
+                              <tr class="row97">
+                                <td class="column0 style0 s">- Clock in/out and attendance report (by PIN or NFC card)<br />
+                    - Staff performance by sales of dishes for restaurant</td>
+                                <td class="column1 style0 s">$30/month</td>
+                              </tr>
+                            </tbody>
+                        </table>
+                      </body>
+                    </html>
+                    
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class = "ExpandedContent" data-myattribute="2">
+                <div>
+                            <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+                            <html>
+                            <head>
+                                <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                                <meta name="generator" content="PhpSpreadsheet, https://github.com/PHPOffice/PhpSpreadsheet">
+                                <title>Untitled Spreadsheet</title>
+                                <meta name="author" content="Unknown Creator" />
+                                <meta name="title" content="Untitled Spreadsheet" />
+                                <meta name="company" content="Microsoft Corporation" />
+                                <style type="text/css">
+                                html { font-family:Calibri, Arial, Helvetica, sans-serif; font-size:11pt; background-color:white }
+                                a.comment-indicator:hover + div.comment { background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em }
+                                a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em }
+                                div.comment { display:none }
+                                table { border-collapse:collapse; page-break-after:always }
+                                .gridlines td { border:1px dotted black }
+                                .gridlines th { border:1px dotted black }
+                                .b { text-align:center }
+                                .e { text-align:center }
+                                .f { text-align:right }
+                                .inlineStr { text-align:left }
+                                .n { text-align:right }
+                                .s { text-align:left }
+                                td.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+                                th.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+                                table.sheet0 col.col0 { width:42pt }
+                                table.sheet0 col.col1 { width:42pt }
+                                table.sheet0 tr { height:15pt }
+                                </style>
+                            </head>
+                            
+                            <body>
+                            <style>
+                                td.column1.style0.s{
+                                text-align: center;
+                                display: flex;
+                                justify-content: center;
+                            
+                            }
+                            td.column0.style0.s {
+                                border: 1px solid black;
+                                text-align: center;
+                                
+                            }
+                            tr{
+                            border: 1px solid black;  
+                            word-wrap: break-word;
+                            
+                            
+                            }
+                            .column{
+                            border:1px solid;
+                            }
+                            table{
+                            width: 100%;
+                            }
+                            @page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+                            body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+                            </style>
+                                <table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+                                    <col class="col0">
+                                    <col class="col1">
+                                    <tbody>
+                                    <tr class="row0">
+                                        <td class = "mainPoint" class="column0 style0 s">Multi Channel Ordering</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row1">
+                                        <td class="column0 style0 s">Drag &amp; drop OneMenu</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row2">
+                                        <td class="column0 style0 s">Dine in/Take Away/Delivery ordering w delivery surcharge auto calculation</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row3">
+                                        <td class="column0 style0 s">Manual delivery platform orders</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row4">
+                                        <td class="column0 style0 s">Build in online ordering</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row5">
+                                        <td class="column0 style0 s">Build in QR-code ordering 2.0 (2% online payment)</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row6">
+                                        <td class = "mainPoint" class="column0 style0 s">Payment &amp; Print</td>
+                                        <td  class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row7">
+                                        <td class="column0 style0 s">Manual Discount</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row8">
+                                        <td class="column0 style0 s">1 Receipt &amp; 1 kitchen printer</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row9">
+                                        <td class="column0 style0 s">Cash, EFTPOS &amp; Multi card</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row10">
+                                        <td class="column0 style0 s">Stripe Online Payment</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row11">
+                                        <td class="column0 style0 s">Alipay &amp; Wechat Integrated</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row12">
+                                        <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row13">
+                                        <td class="column0 style0 s">Order Management</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row14">
+                                        <td class="column0 style0 s">Table Management Lite</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row15">
+                                        <td class="column0 style0 s">Customer profile Lite</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row16">
+                                        <td class="column0 style0 s">End-of-day report</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row17">
+                                        <td class="column0 style0 s">Mobile report in pocket</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row18">
+                                        <td class="column0 style0 s">Invoice list on cloud</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row19">
+                                        <td class="column0 style0 s">Remote setting</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row20">
+                                        <td class = "mainPoint" class="column0 style0 s">Support</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row21">
+                                        <td class="column0 style0 s">Online knowledge base</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row22">
+                                        <td class="column0 style0 s">Online training videos</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row23">
+                                        <td class="column0 style0 s">Lifecycle free SW upgrade &amp; bug fix</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row24">
+                                        <td class = "mainPoint" class="column0 style0 s">Optional Free Payment * (For Wholesale)</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row25">
+                                        <td class="column0 style0 s">Integrated payment w Taptouch Payment</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row26">
+                                        <td class="column0 style0 s">Service Surcharge</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row27">
+                                        <td class="column0 style0 s">Split Payment</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row28">
+                                        <td class="column0 style0 s">Only for Taptouch Payment</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row29">
+                                        <td class="column0 style0 s">Available to order advanced models</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row30">
+                                        <td class = "mainPoint" class="column0 style0 s">Enhanced POS</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row31">
+                                        <td class="column0 style0 s">Combo, Setmenu &amp; Multi Course</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row32">
+                                        <td class="column0 style0 s">No limited Multi printers</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row33">
+                                        <td class="column0 style0 s">Reroute to backup printer</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row34">
+                                        <td class = "mainPoint" class="column0 style0 s">Advertising</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row35">
+                                        <td class="column0 style0 s">In-store ads on client screen</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row36">
+                                        <td class="column0 style0 s">Receipt customization ads</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row37">
+                                        <td class="column0 style0 s">Ads on E-Menu</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row38">
+                                        <td class="column0 style0 s">Email receipt</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row39">
+                                        <td class = "mainPoint" class="column0 style0 s">Easy report</td>
+                                        <td  class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row40">
+                                        <td class="column0 style0 s">Sales by Category report</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row41">
+                                        <td class="column0 style0 s">Sales by product report</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row42">
+                                        <td  class = "mainPoint" class="column0 style0 s">Standard remote support</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row43">
+                                        <td class="column0 style0 s">By chat &amp; call back in working hours</td>
+                                        <td class="column1 style0 s">✔</td>
+                                    </tr>
+                                    <tr class="row44">
+                                        <td class = "mainPoint" class="column0 style0 s">Advance Front of House</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row45">
+                                        <td class="column0 style0 s">Advance table layout</td>
+                                        <td class="column1 style0 s"></td>
+                                    </tr>
+                                    <tr class="row46">
+                                        <td class="column0 style0 s">All-in-1 Multi-menu</td>
+                                        <td class="column1 style0 s"></td>
+                                    </tr>
+                                    <tr class="row47">
+                                        <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                        <td class = "mainPoint"  class="column1"></td>
+                                    </tr>
+                                    <tr class="row48">
+                                        <td class="column0 style0 s">Multi-staff access w multi-language</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row49">
+                                        <td class="column0 style0 s">Log of staff abnormal action</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row50">
+                                        <td class = "mainPoint" class="column0 style0 s">Multi Device</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row51">
+                                        <td class="column0 style0 s">Additional 2 POS devices (inc. POS, Kiosk Tablet, KDS &amp; Pickup board)</td>
+                                        <td class="column1 style0 s">$30/device</td>
+                                    </tr>
+                                    <tr class="row52">
+                                        <td class = "mainPoint" class="column0 style0 s">Advanced Table Management</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row53">
+                                        <td class="column0 style0 s">- Floor plan with seats info<br />
+                            - Table status with timer &amp; dish fulfill status<br />
+                            - Table operation move, merge, split, combine, bring back, lock &amp; move dishes<br />
+                            - Order operation: Cover no., Seat No.; Quick call away; Quick message to kitchen<br />
+                            - Report: Sales by table, sales by cover</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row54">
+                                        <td class = "mainPoint" class="column0 style0 s">Kitchen Display</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row55">
+                                        <td class="column0 style0 s">- 15.6 or 21.5&quot; KDS to combine dishes <br />
+                            - Sync dishes status with POS<br />
+                            - Trigger buzzer &amp; SMS<br />
+                            - 3 Level: Expeditor, Kitchen &amp; preparation<br />
+                            - Option to print fufill tickets</td>
+                                        <td class="column1 style0 s">$30/device</td>
+                                    </tr>
+                                    <tr class="row56">
+                                        <td class = "mainPoint" class="column0 style0 s">Pick up board</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row57">
+                                        <td class="column0 style0 s">- Information for customers to pick food @ counter</td>
+                                        <td class="column1 style0 s">$30/device</td>
+                                    </tr>
+                                    <tr class="row58">
+                                        <td class = "mainPoint" class="column0 style0 s">Lotteries</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row59">
+                                        <td class="column0 style0 s">- Seamless working with Australia Lotteries System</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row60">
+                                        <td class = "mainPoint" class="column0 style0 s">Delivery Platform direct Integration</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row61">
+                                        <td class="column0 style0 s">- Ubereats, Hungry Panda, Doordash direct to System. <br />
+                            - One Menu with difference price<br />
+                            - Unified order processing<br />
+                            - Auto route to kitchen printer<br />
+                            - One stock one report</td>
+                                        <td class="column1 style0 s">$30/platform<br />
+                            Integrates Ubereats, get HungryPanda for free</td>
+                                    </tr>
+                                    <tr class="row62">
+                                        <td class = "mainPoint" class="column0 style0 s">5s quick call order</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row63">
+                                        <td class="column0 style0 s">- Phone caller ID to POS directly<br />
+                            - 5s to process phone call ordering<br />
+                            - Customer order history</td>
+                                        <td class="column1 style0 s">$30/line</td>
+                                    </tr>
+                                    <tr class="row64">
+                                        <td class = "mainPoint"class="column0 style0 s">Tablet order @ table</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row65">
+                                        <td class="column0 style0 s">- 8&quot; or 10&quot; tablet to order @ table <br />
+                            - Real time stock information, dietary tag &amp; sales tag</td>
+                                        <td class="column1 style0 s">$30/device</td>
+                                    </tr>
+                                    <tr class="row66">
+                                        <td class = "mainPoint" class="column0 style0 s">QR Restaurant 3.5</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row67">
+                                        <td class="column0 style0 s">- Shared shopping cart<br />
+                            - Check order history any time<br />
+                            - Add dishes any time<br />
+                            - Pay later offline<br />
+                            - One receipt<br />
+                            - Menu by Zone</td>
+                                        <td class="column1 style0 s">$30/table +2% online payment</td>
+                                    </tr>
+                                    <tr class="row68">
+                                        <td class = "mainPoint" class="column0 style0 s">Self-ordering Kiosk mode</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row69">
+                                        <td class="column0 style0 s">- POS can work as a Kiosk<br />
+                            - 21.5&quot; table seat/wall mout/freestanding POS<br />
+                            - Dietary &amp; sales tag<br />
+                            - Up sales &amp; cross sales</td>
+                                        <td class="column1 style0 s">$30/device+$30/software</td>
+                                    </tr>
+                                    <tr class="row70">
+                                        <td class = "mainPoint" class="column0 style0 s">Advance Discount</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row71">
+                                        <td class="column0 style0 s">- Customized discount for cost &amp; performance tracking<br />
+                            - Automatic discount for sales policy<br />
+                            1. Buy 1 get 1 free or half price for 2nd<br />
+                            2. 10% discount if total order is over $100</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row72">
+                                        <td class = "mainPoint" class="column0 style0 s">Trackable coupon</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row73">
+                                        <td class="column0 style0 s">- Publish coupon (can copy to use)<br />
+                            - Come back scan to get discount<br />
+                            - Track performance by marketing channel</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row74">
+                                        <td class = "mainPoint" class="column0 style0 s">Flexi Voucher</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row75">
+                                        <td class="column0 style0 s">- Offline voucher sales.<br />
+                            - Flexible for different amount of sales<br />
+                            - Must be redeemed to be used once.</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row76">
+                                        <td class = "mainPoint" class="column0 style0 s">Digital Gift Card</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row77">
+                                        <td class="column0 style0 s">- Brand in the back office easily and define multi amout<br />
+                            - Sell online with SMS &amp; Email to customer<br />
+                            - Scan to redeem on POS (can be used multi-time)</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row78">
+                                        <td class = "mainPoint" class="column0 style0 s">Loyalty card w reward point</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row79">
+                                        <td class="column0 style0 s">- Define card and reward policy in backoffice<br />
+                            - Customer scan enroll QR or website to register online<br />
+                            - Scan membership QR to get reward or redeem</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row80">
+                                        <td class = "mainPoint" class="column0 style0 s">Digital Punch card</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row81">
+                                        <td class="column0 style0 s">- Set punch card policy in the back office.<br />
+                            - Customers scan QR or register online to get a Membership card in their digital wallet<br />
+                            - Scan the Membership QR to get reward or redeem</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row82">
+                                        <td class = "mainPoint" class="column0 style0 s">Member Credit*</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row83">
+                                        <td class="column0 style0 s">- Setup popular top up amount on backend with discount strategy.<br />
+                            - Customer Top-up on POS or get credit<br />
+                            - Customer scan to use the card<br />
+                            - Top up new credit or fill the blance</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row84">
+                                        <td class = "mainPoint" class="column0 style0 s">Multi Menu</td>
+                                        <td class = "mainPoint"  class="column1"></td>
+                                    </tr>
+                                    <tr class="row85">
+                                        <td class="column0 style0 s">- Time-based menu for holidays, weekends, happy hour<br />
+                            - By channel for dine in/take away/dlivery w different price<br />
+                            - By location different menus for different shop<br />
+                            - By device with different menu like drink menu on bar machine, table service menu for tablet </td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row86">
+                                        <td class = "mainPoint" class="column0 style0 s">Stock tracing</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row87">
+                                        <td class="column0 style0 s">- Stock tracking<br />
+                            - Low stock warning<br />
+                            - Auto trigger for sold out</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row88">
+                                        <td class = "mainPoint" class="column0 style0 s">Ingredient table</td>
+                                        <td  class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row89">
+                                        <td class="column0 style0 s">- Ingredient table<br />
+                            - Auto print to Kitchen docket</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row90">
+                                        <td class = "mainPoint" class="column0 style0 s">Inventory &amp; Vendor Management</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row91">
+                                        <td class="column0 style0 s">- Stock in/out &amp; Stock taking<br />
+                            - Vendor management model</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row92">
+                                        <td class = "mainPoint" class="column0 style0 s">Advance report &amp; BI analysys</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row93">
+                                        <td class="column0 style0 s">- Cloud storage for data over 3 months<br />
+                            - Table status report<br />
+                            - Operation analysis<br />
+                            - Sales report by different scenario<br />
+                            - Weekly &amp; Monthly auto report to accontant<br />
+                            - Advance summary report</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    <tr class="row94">
+                                        <td class = "mainPoint" class="column0 style0 s">Survillance Integration</td>
+                                        <td class = "mainPoint" class="column1"></td>
+                                    </tr>
+                                    <tr class="row95">
+                                        <td class="column0 style0 s">All ordering process and shopping cart log to NVR</td>
+                                        <td class="column1 style0 s">$30/POS</td>
+                                    </tr>
+                                    <tr class="row96">
+                                        <td class = "mainPoint" class="column0 style0 s">Staff performance</td>
+                                        <td class="column1"></td>
+                                    </tr>
+                                    <tr class="row97">
+                                        <td class="column0 style0 s">- Clock in/out and attendance report (by PIN or NFC card)<br />
+                            - Staff performance by sales of dishes for restaurant</td>
+                                        <td class="column1 style0 s">$30/month</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </body>
+                            </html>
+                </div>
+                
+            </div>
+
+            
+
+            <div class = "ExpandedContent" data-myattribute="3">
+                    <div>
+                        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+                        <html>
+                          <head>
+                              <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+                              <meta name="generator" content="PhpSpreadsheet, https://github.com/PHPOffice/PhpSpreadsheet">
+                              <title>Untitled Spreadsheet</title>
+                              <meta name="author" content="Unknown Creator" />
+                              <meta name="title" content="Untitled Spreadsheet" />
+                              <meta name="company" content="Microsoft Corporation" />
+                            <style type="text/css">
+                              html { font-family:Calibri, Arial, Helvetica, sans-serif; font-size:11pt; background-color:white }
+                              a.comment-indicator:hover + div.comment { background:#ffd; position:absolute; display:block; border:1px solid black; padding:0.5em }
+                              a.comment-indicator { background:red; display:inline-block; border:1px solid black; width:0.5em; height:0.5em }
+                              div.comment { display:none }
+                              table { border-collapse:collapse; page-break-after:always }
+                              .gridlines td { border:1px dotted black }
+                              .gridlines th { border:1px dotted black }
+                              .b { text-align:center }
+                              .e { text-align:center }
+                              .f { text-align:right }
+                              .inlineStr { text-align:left }
+                              .n { text-align:right }
+                              .s { text-align:left }
+                              td.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+                              th.style0 { vertical-align:bottom; border-bottom:none #000000; border-top:none #000000; border-left:none #000000; border-right:none #000000; color:#000000; font-family:'Calibri'; font-size:11pt; background-color:white }
+                              table.sheet0 col.col0 { width:42pt }
+                              table.sheet0 col.col1 { width:42pt }
+                              table.sheet0 tr { height:15pt }
+                            </style>
+                          </head>
+                        
+                          <body>
+                        <style>
+                              td.column1.style0.s{
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                        
+                          }
+                          td.column0.style0.s {
+                            border: 1px solid black;
+                            text-align: center;
+                            
+                          }
+                        tr{
+                          border: 1px solid black;  
+                          word-wrap: break-word;
+                          
+                          
+                        }
+                        .column{
+                          border:1px solid;
+                        }
+                        table{
+                          width: 100%;
+                        }
+                        @page { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+                        body { margin-left: 0.7in; margin-right: 0.7in; margin-top: 0.75in; margin-bottom: 0.75in; }
+                        </style>
+                            <table border="0" cellpadding="0" cellspacing="0" id="sheet0" class="sheet0 gridlines">
+                                <col class="col0">
+                                <col class="col1">
+                                <tbody>
+                             
+                                  <tr class="row1">
+                                    <td class = "mainPoint" class="column0 style0 s">Multi Channel Ordering</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row2">
+                                    <td class="column0 style0 s">Drag &amp; drop OneMenu</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row3">
+                                    <td class="column0 style0 s">Dine in/Take Away/Delivery ordering w delivery surcharge auto calculation</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row4">
+                                    <td class="column0 style0 s">Manual delivery platform orders</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row5">
+                                    <td class="column0 style0 s">Build in online ordering</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row6">
+                                    <td class="column0 style0 s">Build in QR-code ordering 2.0 (2% online payment)</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row7">
+                                    <td class = "mainPoint" class="column0 style0 s">Payment &amp; Print</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row8">
+                                    <td class="column0 style0 s">Manual Discount</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row9">
+                                    <td class="column0 style0 s">1 Receipt &amp; 1 kitchen printer</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row10">
+                                    <td class="column0 style0 s">Cash, EFTPOS &amp; Multi card</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row11">
+                                    <td class="column0 style0 s">Stripe Online Payment</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row12">
+                                    <td class="column0 style0 s">Alipay &amp; Wechat Integrated</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row13">
+                                    <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row14">
+                                    <td  class="column0 style0 s">Order Management</td>
+                                    <td  class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row15">
+                                    <td class="column0 style0 s">Table Management Lite</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row16">
+                                    <td class="column0 style0 s">Customer profile Lite</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row17">
+                                    <td class="column0 style0 s">End-of-day report</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row18">
+                                    <td class="column0 style0 s">Mobile report in pocket</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row19">
+                                    <td class="column0 style0 s">Invoice list on cloud</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row20">
+                                    <td class="column0 style0 s">Remote setting</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row21">
+                                    <td class = "mainPoint" class="column0 style0 s">Support</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row22">
+                                    <td class="column0 style0 s">Online knowledge base</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row23">
+                                    <td class="column0 style0 s">Online training videos</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row24">
+                                    <td class="column0 style0 s">Lifecycle free SW upgrade &amp; bug fix</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row25">
+                                    <td class = "mainPoint" class="column0 style0 s">Optional Free Payment * (For Wholesale)</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row26">
+                                    <td class="column0 style0 s">Integrated payment w Taptouch Payment</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row27">
+                                    <td class="column0 style0 s">Service Surcharge</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row28">
+                                    <td class="column0 style0 s">Split Payment</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row29">
+                                    <td class="column0 style0 s">Only for Taptouch Payment</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row30">
+                                    <td class="column0 style0 s">Available to order advanced models</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row31">
+                                    <td class = "mainPoint" class="column0 style0 s">Enhanced POS</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row32">
+                                    <td class="column0 style0 s">Combo, Setmenu &amp; Multi Course</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row33">
+                                    <td class="column0 style0 s">No limited Multi printers</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row34">
+                                    <td class="column0 style0 s">Reroute to backup printer</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row35">
+                                    <td class = "mainPoint" class="column0 style0 s">Advertising</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row36">
+                                    <td class="column0 style0 s">In-store ads on client screen</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row37">
+                                    <td class="column0 style0 s">Receipt customization ads</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row38">
+                                    <td class="column0 style0 s">Ads on E-Menu</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row39">
+                                    <td class="column0 style0 s">Email receipt</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row40">
+                                    <td  class = "mainPoint" class="column0 style0 s">Easy report</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row41">
+                                    <td class="column0 style0 s">Sales by Category report</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row42">
+                                    <td class="column0 style0 s">Sales by product report</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row43">
+                                    <td class = "mainPoint" class="column0 style0 s">Standard remote support</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row44">
+                                    <td class="column0 style0 s">By chat &amp; call back in working hours</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row45">
+                                    <td class = "mainPoint" class="column0 style0 s">Advance Front of House</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row46">
+                                    <td class="column0 style0 s">Advance table layout</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row47">
+                                    <td class="column0 style0 s">All-in-1 Multi-menu</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row48">
+                                    <td class = "mainPoint" class="column0 style0 s">Management</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row49">
+                                    <td class="column0 style0 s">Multi-staff access w multi-language</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row50">
+                                    <td class="column0 style0 s">Log of staff abnormal action</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row51">
+                                    <td class = "mainPoint" class="column0 style0 s">Multi Device</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row52">
+                                    <td class="column0 style0 s">Additional 2 POS devices (inc. POS, Kiosk Tablet, KDS &amp; Pickup board)</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row53">
+                                    <td  class = "mainPoint" class="column0 style0 s">Advanced Table Management</td>
+                                    <td cclass = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row54">
+                                    <td class="column0 style0 s">- Floor plan with seats info<br />
+                        - Table status with timer &amp; dish fulfill status<br />
+                        - Table operation move, merge, split, combine, bring back, lock &amp; move dishes<br />
+                        - Order operation: Cover no., Seat No.; Quick call away; Quick message to kitchen<br />
+                        - Report: Sales by table, sales by cover</td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row55">
+                                    <td class = "mainPoint" class="column0 style0 s">Kitchen Display</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row56">
+                                    <td class="column0 style0 s">- 15.6 or 21.5&quot; KDS to combine dishes <br />
+                        - Sync dishes status with POS<br />
+                        - Trigger buzzer &amp; SMS<br />
+                        - 3 Level: Expeditor, Kitchen &amp; preparation<br />
+                        - Option to print fufill tickets</td>
+                                    <td class="column1 style0 s">$30/device</td>
+                                  </tr>
+                                  <tr class="row57">
+                                    <td class = "mainPoint" class="column0 style0 s">Pick up board</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row58">
+                                    <td class="column0 style0 s">- Information for customers to pick food @ counter</td>
+                                    <td class="column1 style0 s">$30/device</td>
+                                  </tr>
+                                  <tr class="row59">
+                                    <td class = "mainPoint" class="column0 style0 s">Lotteries</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row60">
+                                    <td class="column0 style0 s">- Seamless working with Australia Lotteries System</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row61">
+                                    <td class = "mainPoint" class="column0 style0 s">Delivery Platform direct Integration</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row62">
+                                    <td class="column0 style0 s">- Ubereats, Hungry Panda, Doordash direct to System. <br />
+                        - One Menu with difference price<br />
+                        - Unified order processing<br />
+                        - Auto route to kitchen printer<br />
+                        - One stock one report</td>
+                                    <td class="column1 style0 s">$30/platform<br />
+                        Integrates Ubereats, get HungryPanda for free</td>
+                                  </tr>
+                                  <tr class="row63">
+                                    <td class = "mainPoint" class="column0 style0 s">5s quick call order</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row64">
+                                    <td class="column0 style0 s">- Phone caller ID to POS directly<br />
+                        - 5s to process phone call ordering<br />
+                        - Customer order history</td>
+                                    <td class="column1 style0 s">$30/line</td>
+                                  </tr>
+                                  <tr class="row65">
+                                    <td class = "mainPoint" class="column0 style0 s">Tablet order @ table</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row66">
+                                    <td class="column0 style0 s">- 8&quot; or 10&quot; tablet to order @ table <br />
+                        - Real time stock information, dietary tag &amp; sales tag</td>
+                                    <td class="column1 style0 s">$30/device</td>
+                                  </tr>
+                                  <tr class="row67">
+                                    <td class = "mainPoint" class="column0 style0 s">QR Restaurant 3.5</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row68">
+                                    <td class="column0 style0 s">- Shared shopping cart<br />
+                        - Check order history any time<br />
+                        - Add dishes any time<br />
+                        - Pay later offline<br />
+                        - One receipt<br />
+                        - Menu by Zone</td>
+                                    <td class="column1 style0 s">$30/table +2% online payment</td>
+                                  </tr>
+                                  <tr class="row69">
+                                    <td class = "mainPoint" class="column0 style0 s">Self-ordering Kiosk mode</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row70">
+                                    <td class="column0 style0 s">- POS can work as a Kiosk<br />
+                        - 21.5&quot; table seat/wall mout/freestanding POS<br />
+                        - Dietary &amp; sales tag<br />
+                        - Up sales &amp; cross sales</td>
+                                    <td class="column1 style0 s">$30/device+$30/software</td>
+                                  </tr>
+                                  <tr class="row71">
+                                    <td class = "mainPoint" class="column0 style0 s">Advance Discount</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row72">
+                                    <td class="column0 style0 s">- Customized discount for cost &amp; performance tracking<br />
+                        - Automatic discount for sales policy<br />
+                        1. Buy 1 get 1 free or half price for 2nd<br />
+                        2. 10% discount if total order is over $100</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row73">
+                                    <td class = "mainPoint" class="column0 style0 s">Trackable coupon</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row74">
+                                    <td class="column0 style0 s">- Publish coupon (can copy to use)<br />
+                        - Come back scan to get discount<br />
+                        - Track performance by marketing channel</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row75">
+                                    <td class = "mainPoint" class="column0 style0 s">Flexi Voucher</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row76">
+                                    <td class="column0 style0 s">- Offline voucher sales.<br />
+                        - Flexible for different amount of sales<br />
+                        - Must be redeemed to be used once.</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row77">
+                                    <td class = "mainPoint" class="column0 style0 s">Digital Gift Card</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row78">
+                                    <td class="column0 style0 s">- Brand in the back office easily and define multi amout<br />
+                        - Sell online with SMS &amp; Email to customer<br />
+                        - Scan to redeem on POS (can be used multi-time)</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row79">
+                                    <td class = "mainPoint" class="column0 style0 s">Loyalty card w reward point</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row80">
+                                    <td class="column0 style0 s">- Define card and reward policy in backoffice<br />
+                        - Customer scan enroll QR or website to register online<br />
+                        - Scan membership QR to get reward or redeem</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row81">
+                                    <td class = "mainPoint" class="column0 style0 s">Digital Punch card</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row82">
+                                    <td class="column0 style0 s">- Set punch card policy in the back office.<br />
+                        - Customers scan QR or register online to get a Membership card in their digital wallet<br />
+                        - Scan the Membership QR to get reward or redeem</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row83">
+                                    <td class = "mainPoint" class="column0 style0 s">Member Credit*</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row84">
+                                    <td class="column0 style0 s">- Setup popular top up amount on backend with discount strategy.<br />
+                        - Customer Top-up on POS or get credit<br />
+                        - Customer scan to use the card<br />
+                        - Top up new credit or fill the blance</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row85">
+                                    <td class = "mainPoint" class="column0 style0 s">Multi Menu</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row86">
+                                    <td class="column0 style0 s">- Time-based menu for holidays, weekends, happy hour<br />
+                        - By channel for dine in/take away/dlivery w different price<br />
+                        - By location different menus for different shop<br />
+                        - By device with different menu like drink menu on bar machine, table service menu for tablet </td>
+                                    <td class="column1 style0 s">✔</td>
+                                  </tr>
+                                  <tr class="row87">
+                                    <td class = "mainPoint" class="column0 style0 s">Stock tracing</td>
+                                    <td  class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row88">
+                                    <td class="column0 style0 s">- Stock tracking<br />
+                        - Low stock warning<br />
+                        - Auto trigger for sold out</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row89">
+                                    <td class = "mainPoint" class="column0 style0 s">Ingredient table</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row90">
+                                    <td class="column0 style0 s">- Ingredient table<br />
+                        - Auto print to Kitchen docket</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row91">
+                                    <td class = "mainPoint" class="column0 style0 s">Inventory &amp; Vendor Management</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row92">
+                                    <td class="column0 style0 s">- Stock in/out &amp; Stock taking<br />
+                        - Vendor management model</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row93">
+                                    <td class = "mainPoint" class="column0 style0 s">Advance report &amp; BI analysys</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row94">
+                                    <td class="column0 style0 s">- Cloud storage for data over 3 months<br />
+                        - Table status report<br />
+                        - Operation analysis<br />
+                        - Sales report by different scenario<br />
+                        - Weekly &amp; Monthly auto report to accontant<br />
+                        - Advance summary report</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                  <tr class="row95">
+                                    <td class = "mainPoint" class="column0 style0 s">Survillance Integration</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row96">
+                                    <td class="column0 style0 s">All ordering process and shopping cart log to NVR</td>
+                                    <td class="column1 style0 s">$30/POS</td>
+                                  </tr>
+                                  <tr class="row97">
+                                    <td class = "mainPoint" class="column0 style0 s">Staff performance</td>
+                                    <td class = "mainPoint" class="column1"></td>
+                                  </tr>
+                                  <tr class="row98">
+                                    <td class="column0 style0 s">- Clock in/out and attendance report (by PIN or NFC card)<br />
+                        - Staff performance by sales of dishes for restaurant</td>
+                                    <td class="column1 style0 s">$30/month</td>
+                                  </tr>
+                                </tbody>
+                            </table>
+                          </body>
+                        </html>
+                        
+                    </div>
+            </div>
+
+
+        </div>
+
+        <div id ="compareFeatureContainer" style = "width: 100%; ">
+         
+          <button class="btn-31"  onclick="expandPackage(0)">
+              <span class="text-container">
+                <span class="text">Compare Features</span>
+              </span>
+          </button> 
+          <div style = "text-align: center; margin-top: 10px;">
+            ANZ, TYRO or AYDEN Eftpos integration required (Otherwise additional $30 ex GST per month fee will be incurred). We will directly charge the client.
+            <br>* Wholesale Rebate bonus (can only be used for software upgrades)    
+          </div>
+        </div>  
+    </div>
+
+</body>
+
+</html>
